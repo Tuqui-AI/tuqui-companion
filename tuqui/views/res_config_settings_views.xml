@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.tuqui</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="70"/>
+        <field name="inherit_id" ref="base_setup.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//block[@name='integration']" position="inside">
+                <setting id="tuqui" string="Tuqui"
+                         documentation="https://tuqui.com"
+                         help="Connect this database to Tuqui, the AI assistant for Odoo. One-click activation; every call Tuqui makes runs with the acting user's own permissions and is recorded in the access log.">
+                    <field name="tuqui_state" invisible="1"/>
+
+                    <!-- Not connected: a single call to action -->
+                    <div invisible="tuqui_state in ('active', 'test', 'copy_pending')">
+                        <button name="action_tuqui_activate" type="object"
+                                string="Activate Tuqui" class="btn-primary"/>
+                    </div>
+
+                    <!-- A copy of a connected database: connects as a test database -->
+                    <div invisible="tuqui_state != 'copy_pending'">
+                        <p class="text-muted">This database is a copy of one connected to Tuqui.</p>
+                        <button name="action_tuqui_activate" type="object"
+                                string="Connect as a test database" class="btn-primary"/>
+                    </div>
+
+                    <!-- Connected: status + links + lifecycle actions -->
+                    <div invisible="tuqui_state not in ('active', 'test')">
+                        <field name="tuqui_access_count_7d" invisible="1"/>
+                        <div class="d-flex align-items-center flex-wrap gap-2">
+                            <span class="badge text-bg-success" invisible="tuqui_state != 'active'">Connected</span>
+                            <span class="badge text-bg-warning" invisible="tuqui_state != 'test'">Test database</span>
+                            <span class="text-muted">·</span>
+                            <span class="text-muted">Last activity:</span>
+                            <field name="tuqui_last_seen_at" readonly="1" class="oe_inline"/>
+                        </div>
+                        <div class="text-muted small mt-1">
+                            <field name="tuqui_access_summary" readonly="1" class="oe_inline"/>
+                        </div>
+                        <div class="d-flex flex-wrap gap-3 mt-2">
+                            <button name="action_tuqui_open_workspace" type="object"
+                                    string="Go to Tuqui" icon="fa-external-link"
+                                    class="btn-link p-0"/>
+                            <button name="action_tuqui_open_access_log" type="object"
+                                    string="View access log" icon="fa-list-ul"
+                                    class="btn-link p-0"/>
+                            <button name="action_tuqui_open_events" type="object"
+                                    string="View event queue" icon="fa-paper-plane-o"
+                                    class="btn-link p-0"/>
+                            <button name="action_tuqui_disconnect" type="object"
+                                    string="Disconnect" icon="fa-chain-broken"
+                                    class="btn-link p-0"
+                                    confirm="Disconnect this Odoo from Tuqui? Tuqui will lose access until you re-activate."/>
+                        </div>
+                    </div>
+
+                    <!-- Security: optional read-only lock (only meaningful once connected) -->
+                    <div invisible="tuqui_state not in ('active', 'test')" class="mt16">
+                        <span class="o_form_label fw-bold d-block mb-1">Security</span>
+                        <div class="d-flex align-items-center">
+                            <field name="tuqui_read_only" widget="boolean_toggle" class="oe_inline"/>
+                            <label for="tuqui_read_only" string="Read-only mode" class="ms-2 mb-0"/>
+                        </div>
+                        <div class="text-muted small mt-1" invisible="not tuqui_read_only">
+                            Tuqui can read but never create, update, delete or run methods.
+                            Reads still follow each user's own Odoo permissions.
+                        </div>
+                        <div class="text-muted small mt-1" invisible="tuqui_read_only">
+                            Tuqui can create, update and delete in Odoo — but only on the models
+                            you enable in the write whitelist in Tuqui's settings.
+                            Reads still follow each user's own Odoo permissions.
+                        </div>
+                    </div>
+                    <div invisible="tuqui_state not in ('active', 'test')" class="mt16">
+                        <label for="tuqui_extra_embed_origins" class="o_form_label fw-bold d-block mb-1"/>
+                        <field name="tuqui_extra_embed_origins" placeholder="https://erp.mycompany.com"/>
+                        <div class="text-muted small mt-1">
+                            Other URLs people open this Odoo from. Tuqui Assistant only loads on
+                            this Odoo's main URL, its websites' domains and these.
+                        </div>
+                    </div>
+                </setting>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

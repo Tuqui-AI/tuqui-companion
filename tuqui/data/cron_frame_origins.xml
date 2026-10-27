@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+
+    <!--
+        Tells Tuqui which domains this Odoo is served at, so the embedded panel
+        is allowed to be framed by them. Tuqui puts them in the CSP
+        `frame-ancestors` of the embed, and until it knew more than one, anybody
+        opening the panel from a branded domain got the browser's "refused to
+        connect" with nothing to show for it on either side.
+
+        Daily, and a cron rather than the panel's bootstrap. The bootstrap is
+        `onWillStart` of a `main_components` component, so reporting from there
+        made every page load of every user wait on an HTTP call to another host
+        — and a failure was not remembered, so a Tuqui that was down would have
+        slowed the customer's Odoo for as long as it stayed down. Domains change
+        about as often as somebody edits a website record, so a day of latency
+        costs nothing next to that.
+
+        Cheap when idle: the declared list is compared against a local copy of
+        what was last accepted, and the request only goes out when the two differ,
+        so a steady instance makes no network call at all. Activation triggers it
+        directly, so a fresh connection does not wait a day to be framable.
+    -->
+    <record id="ir_cron_tuqui_report_frame_origins" model="ir.cron">
+        <field name="name">Tuqui: report this instance's domains</field>
+        <field name="model_id" ref="model_tuqui_oauth_client"/>
+        <field name="state">code</field>
+        <field name="code">model._cron_report_frame_origins()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="active">True</field>
+    </record>
+
+</odoo>
