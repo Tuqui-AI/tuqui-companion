@@ -1,0 +1,25 @@
+{
+    "name": "Tuqui Companion",
+    "version": "16.0.1.1.0",
+    "category": "Productivity",
+    "summary": "One-click activation for Tuqui: registers this instance and handles the OAuth connection from Settings. For Odoo.sh and On-Premise.",
+    "author": "Tuqui-AI",
+    "website": "https://tuqui.com",
+    "license": "LGPL-3",
+    "images": ["static/description/portada.png"],
+    "depends": [
+        "base",
+        "base_setup",
+        "web",
+    ],
+    "data": [
+        "security/ir.model.access.csv",
+        "data/ir_config_parameter_data.xml",
+        "data/cron_activation_cleanup.xml",
+        "views/tuqui_access_log_views.xml",
+        "views/res_config_settings_views.xml",
+    ],
+    "installable": True,
+    "application": False,
+    "auto_install": False,
+}
