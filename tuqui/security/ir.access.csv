@@ -1,0 +1,5 @@
+id,name,model_id,group_id/id,operation,domain
+access_tuqui_oauth_client_admin,tuqui.oauth.client.admin,tuqui.oauth.client,base.group_system,crud,
+access_tuqui_access_log_admin,tuqui.access.log.admin,tuqui.access.log,base.group_system,crud,
+access_tuqui_activation_nonce_admin,tuqui.activation.nonce.admin,tuqui.activation.nonce,base.group_system,crud,
+access_tuqui_event_admin,tuqui.event.admin,tuqui.event,base.group_system,crud,

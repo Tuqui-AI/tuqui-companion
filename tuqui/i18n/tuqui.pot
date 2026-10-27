@@ -1,0 +1,1022 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* tuqui
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 20.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-27 15:01+0000\n"
+"PO-Revision-Date: 2026-10-27 15:01+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: tuqui
+#. odoo-python
+#: code:addons/tuqui/models/res_config_settings.py:0
+msgid "%s access in the last 7 days"
+msgstr ""
+
+#. module: tuqui
+#. odoo-python
+#: code:addons/tuqui/models/res_config_settings.py:0
+msgid "%s accesses in the last 7 days"
+msgstr ""
+
+#. module: tuqui
+#: model_terms:ir.ui.view,arch_db:tuqui.res_config_settings_view_form
+msgid ""
+"<span class=\"badge text-bg-success\" invisible=\"tuqui_state != 'active'\">Connected</span>\n"
+"                            <span class=\"badge text-bg-warning\" invisible=\"tuqui_state != 'test'\">Test database</span>\n"
+"                            <span class=\"text-muted\">·</span>\n"
+"                            <span class=\"text-muted\">Last activity:</span>"
+msgstr ""
+
+#. module: tuqui
+#: model_terms:ir.ui.view,arch_db:tuqui.res_config_settings_view_form
+msgid "<span class=\"o_form_label fw-bold d-block mb-1\">Security</span>"
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.constraint,message:tuqui.constraint_tuqui_event_uuid_unique
+msgid ""
+"A Tuqui event UUID must be unique - it is the idempotency key Tuqui dedups "
+"on."
+msgstr ""
+
+#. module: tuqui
+#: model:ir.actions.act_window,name:tuqui.action_tuqui_access_log
+msgid "Access Log"
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields,field_description:tuqui.field_tuqui_oauth_client__access_count_7d
+msgid "Accesses (last 7 days)"
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields,field_description:tuqui.field_tuqui_access_log__acting_user_id
+msgid "Acting User"
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields,field_description:tuqui.field_tuqui_activation_nonce__acting_user_login
+msgid "Acting User Login"
+msgstr ""
+
+#. module: tuqui
+#: model_terms:ir.ui.view,arch_db:tuqui.view_tuqui_access_log_search
+msgid "Acting user"
+msgstr ""
+
+#. module: tuqui
+#: model_terms:ir.ui.view,arch_db:tuqui.res_config_settings_view_form
+msgid "Activate Tuqui"
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields,field_description:tuqui.field_tuqui_oauth_client__activated_at
+msgid "Activated At"
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields,field_description:tuqui.field_tuqui_oauth_client__activation_pending
+msgid "Activation Pending"
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields.selection,name:tuqui.selection__res_config_settings__tuqui_state__active
+#: model:ir.model.fields.selection,name:tuqui.selection__tuqui_oauth_client__state__active
+msgid "Active"
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields,field_description:tuqui.field_res_config_settings__tuqui_extra_embed_origins
+msgid "Additional URLs for Tuqui Assistant"
+msgstr ""
+
+#. module: tuqui
+#: model_terms:ir.ui.view,arch_db:tuqui.view_tuqui_event_search
+msgid "Agent"
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields.selection,name:tuqui.selection__tuqui_access_log__operation_type__any
+msgid "Any"
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields,field_description:tuqui.field_tuqui_event__attempt
+msgid "Attempt"
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields,help:tuqui.field_tuqui_oauth_client__reported_embed_origins
+msgid ""
+"Browser origins this Odoo has already told Tuqui it is served at, space "
+"separated. Local memory only — Tuqui holds the real list. It is here so the "
+"report costs one call per new domain ever, instead of one per panel open."
+msgstr ""
+
+#. module: tuqui
+#: model_terms:ir.ui.view,arch_db:tuqui.view_tuqui_event_list
+msgid "Chain"
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields,field_description:tuqui.field_tuqui_event__chain_depth
+msgid "Chain Depth"
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields,field_description:tuqui.field_tuqui_activation_nonce__client_id
+#: model:ir.model.fields,field_description:tuqui.field_tuqui_oauth_client__client_id
+msgid "Client"
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields,field_description:tuqui.field_tuqui_oauth_client__client_secret_hash
+msgid "Client Secret Hash"
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields,field_description:tuqui.field_tuqui_activation_nonce__client_secret_plaintext
+msgid "Client Secret Plaintext"
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields,field_description:tuqui.field_tuqui_oauth_client__client_secret_salt
+msgid "Client Secret Salt"
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model,name:tuqui.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: tuqui
+#: model_terms:ir.ui.view,arch_db:tuqui.res_config_settings_view_form
+msgid "Connect as a test database"
+msgstr ""
+
+#. module: tuqui
+#: model_terms:ir.ui.view,arch_db:tuqui.res_config_settings_view_form
+msgid ""
+"Connect this database to Tuqui, the AI assistant for Odoo. One-click "
+"activation; every call Tuqui makes runs with the acting user's own "
+"permissions and is recorded in the access log."
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields,field_description:tuqui.field_tuqui_activation_nonce__consumed_at
+msgid "Consumed At"
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields,field_description:tuqui.field_tuqui_oauth_client__copy_parent_client_id
+msgid "Copy Parent Client"
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields,field_description:tuqui.field_tuqui_oauth_client__copy_parent_signing_key
+msgid "Copy Parent Signing Key"
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields,field_description:tuqui.field_tuqui_oauth_client__copy_pending_secret
+msgid "Copy Pending Secret"
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields.selection,name:tuqui.selection__res_config_settings__tuqui_state__copy_pending
+#: model:ir.model.fields.selection,name:tuqui.selection__tuqui_oauth_client__state__copy_pending
+msgid "Copy pending registration"
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields,field_description:tuqui.field_tuqui_access_log__create_uid
+#: model:ir.model.fields,field_description:tuqui.field_tuqui_activation_nonce__create_uid
+#: model:ir.model.fields,field_description:tuqui.field_tuqui_event__create_uid
+#: model:ir.model.fields,field_description:tuqui.field_tuqui_oauth_client__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields,field_description:tuqui.field_tuqui_access_log__create_date
+#: model:ir.model.fields,field_description:tuqui.field_tuqui_activation_nonce__create_date
+#: model:ir.model.fields,field_description:tuqui.field_tuqui_event__create_date
+#: model:ir.model.fields,field_description:tuqui.field_tuqui_oauth_client__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: tuqui
+#: model_terms:ir.ui.view,arch_db:tuqui.view_tuqui_access_log_search
+msgid "Denied by policy"
+msgstr ""
+
+#. module: tuqui
+#: model_terms:ir.ui.view,arch_db:tuqui.res_config_settings_view_form
+msgid "Disconnect"
+msgstr ""
+
+#. module: tuqui
+#: model_terms:ir.ui.view,arch_db:tuqui.res_config_settings_view_form
+msgid ""
+"Disconnect this Odoo from Tuqui? Tuqui will lose access until you re-"
+"activate."
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields.selection,name:tuqui.selection__res_config_settings__tuqui_state__disconnected
+#: model:ir.model.fields.selection,name:tuqui.selection__tuqui_oauth_client__state__disconnected
+msgid "Disconnected"
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields,field_description:tuqui.field_ir_actions_server__display_name
+#: model:ir.model.fields,field_description:tuqui.field_ir_cron__display_name
+#: model:ir.model.fields,field_description:tuqui.field_res_config_settings__display_name
+#: model:ir.model.fields,field_description:tuqui.field_tuqui_access_log__display_name
+#: model:ir.model.fields,field_description:tuqui.field_tuqui_activation_nonce__display_name
+#: model:ir.model.fields,field_description:tuqui.field_tuqui_event__display_name
+#: model:ir.model.fields,field_description:tuqui.field_tuqui_health__display_name
+#: model:ir.model.fields,field_description:tuqui.field_tuqui_oauth_client__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields,field_description:tuqui.field_tuqui_access_log__duration_ms
+msgid "Duration Ms"
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields,field_description:tuqui.field_tuqui_access_log__error_code
+msgid "Error Code"
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields,help:tuqui.field_tuqui_access_log__error_code
+msgid ""
+"Error classification when success is False. One of: access_denied, "
+"validation_error, internal_error. Empty when success is True."
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields,help:tuqui.field_tuqui_event__last_error
+msgid "Error of the last failed attempt."
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields,field_description:tuqui.field_tuqui_activation_nonce__event_signing_key
+#: model:ir.model.fields,field_description:tuqui.field_tuqui_oauth_client__event_signing_key
+msgid "Event Signing Key"
+msgstr ""
+
+#. module: tuqui
+#: model_terms:ir.actions.act_window,help:tuqui.action_tuqui_event
+msgid ""
+"Events appear here when an automation notifies a Tuqui agent. Each one is\n"
+"                retried on its own schedule; a failed event stays on the list so it can be\n"
+"                sent again by hand."
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields.selection,name:tuqui.selection__tuqui_access_log__operation_type__execute
+msgid "Execute"
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields,field_description:tuqui.field_tuqui_activation_nonce__expires_at
+msgid "Expires At"
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields.selection,name:tuqui.selection__tuqui_event__state__failed
+#: model_terms:ir.ui.view,arch_db:tuqui.view_tuqui_event_search
+msgid "Failed"
+msgstr ""
+
+#. module: tuqui
+#: model_terms:ir.ui.view,arch_db:tuqui.res_config_settings_view_form
+msgid "Go to Tuqui"
+msgstr ""
+
+#. module: tuqui
+#: model_terms:ir.ui.view,arch_db:tuqui.view_tuqui_event_list
+msgid "HTTP"
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields,help:tuqui.field_tuqui_event__last_status_code
+msgid "HTTP status of the last attempt, 0 if it never answered."
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields,help:tuqui.field_tuqui_event__chain_depth
+msgid ""
+"How many agent runs led to this event: 0 when a person made the change, n+1 "
+"when a run that was itself at depth n did. Tuqui refuses the event past its "
+"cap, which is what stops two agents from waking each other forever."
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields,help:tuqui.field_tuqui_event__attempt
+msgid "How many times delivery has been tried."
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields,field_description:tuqui.field_ir_actions_server__id
+#: model:ir.model.fields,field_description:tuqui.field_ir_cron__id
+#: model:ir.model.fields,field_description:tuqui.field_res_config_settings__id
+#: model:ir.model.fields,field_description:tuqui.field_tuqui_access_log__id
+#: model:ir.model.fields,field_description:tuqui.field_tuqui_activation_nonce__id
+#: model:ir.model.fields,field_description:tuqui.field_tuqui_event__id
+#: model:ir.model.fields,field_description:tuqui.field_tuqui_health__id
+#: model:ir.model.fields,field_description:tuqui.field_tuqui_oauth_client__id
+msgid "ID"
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields,help:tuqui.field_tuqui_event__uuid
+msgid ""
+"Idempotency key sent to Tuqui. It names this delivery, not the record — "
+"which is what lets Tuqui recognise a retry as the same event a day later, "
+"where a model:id key could only ever absorb a burst."
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields,help:tuqui.field_tuqui_event__agent_external_id
+msgid ""
+"Identifier of the Tuqui agent this event fires. Chosen on the server action."
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields,help:tuqui.field_tuqui_oauth_client__workspace_id_external
+msgid "Identifier returned by Tuqui after the first successful handshake."
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields,field_description:tuqui.field_tuqui_event__last_error
+msgid "Last Error"
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields,field_description:tuqui.field_tuqui_oauth_client__last_seen_at
+msgid "Last Seen At"
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields,field_description:tuqui.field_tuqui_event__last_status_code
+msgid "Last Status Code"
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields,field_description:tuqui.field_tuqui_access_log__write_uid
+#: model:ir.model.fields,field_description:tuqui.field_tuqui_activation_nonce__write_uid
+#: model:ir.model.fields,field_description:tuqui.field_tuqui_event__write_uid
+#: model:ir.model.fields,field_description:tuqui.field_tuqui_oauth_client__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields,field_description:tuqui.field_tuqui_access_log__write_date
+#: model:ir.model.fields,field_description:tuqui.field_tuqui_activation_nonce__write_date
+#: model:ir.model.fields,field_description:tuqui.field_tuqui_event__write_date
+#: model:ir.model.fields,field_description:tuqui.field_tuqui_oauth_client__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields,field_description:tuqui.field_tuqui_access_log__method
+#: model_terms:ir.ui.view,arch_db:tuqui.view_tuqui_access_log_search
+msgid "Method"
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields,field_description:tuqui.field_tuqui_access_log__model_name
+#: model:ir.model.fields,field_description:tuqui.field_tuqui_event__res_model
+#: model_terms:ir.ui.view,arch_db:tuqui.view_tuqui_access_log_search
+msgid "Model"
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields,field_description:tuqui.field_tuqui_event__next_attempt_at
+msgid "Next Attempt At"
+msgstr ""
+
+#. module: tuqui
+#: model_terms:ir.ui.view,arch_db:tuqui.view_tuqui_event_list
+msgid "Next try"
+msgstr ""
+
+#. module: tuqui
+#. odoo-python
+#: code:addons/tuqui/models/ir_actions_server.py:0
+msgid "No agent is offered to Odoo yet"
+msgstr ""
+
+#. module: tuqui
+#: model_terms:ir.actions.act_window,help:tuqui.action_tuqui_event
+msgid "No events queued for Tuqui"
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields,field_description:tuqui.field_tuqui_activation_nonce__nonce
+msgid "Nonce"
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields.selection,name:tuqui.selection__ir_actions_server__state__tuqui_notify
+msgid "Notify Tuqui"
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields,help:tuqui.field_tuqui_activation_nonce__client_secret_plaintext
+msgid ""
+"OAuth client_secret in plaintext, kept only until consumed_at is set or "
+"expires_at passes. NULL after consume."
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields,help:tuqui.field_tuqui_activation_nonce__acting_user_login
+msgid ""
+"Odoo ``res.users.login`` of the admin who triggered the activation. Returned"
+" by /exchange and stored by Tuqui as provenance (who wired this connection)."
+" Captured at /start because the request context isn't available at /exchange"
+" time."
+msgstr ""
+
+#. module: tuqui
+#: model:ir.module.module,summary:base.module_tuqui
+msgid ""
+"One-click activation for Tuqui: registers this instance and handles the "
+"OAuth connection from Settings. For Odoo.sh and On-Premise."
+msgstr ""
+
+#. module: tuqui
+#. odoo-python
+#: code:addons/tuqui/models/tuqui_oauth_client.py:0
+msgid "Only Odoo administrators can activate Tuqui."
+msgstr ""
+
+#. module: tuqui
+#: model_terms:ir.ui.view,arch_db:tuqui.view_server_action_form_tuqui
+msgid "Open in Tuqui"
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields,field_description:tuqui.field_tuqui_access_log__operation_type
+msgid "Operation Type"
+msgstr ""
+
+#. module: tuqui
+#: model_terms:ir.ui.view,arch_db:tuqui.view_tuqui_access_log_search
+msgid "Operation type"
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields,help:tuqui.field_tuqui_event__trigger_ref
+msgid ""
+"Optional keys added to the payload, e.g. the automation rule that fired. "
+"Empty for events of a plain server action, whose payload stays as it was."
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields,help:tuqui.field_res_config_settings__tuqui_extra_embed_origins
+msgid ""
+"Other URLs people open this Odoo from, separated by spaces or commas (e.g. "
+"https://erp.mycompany.com). Tuqui Assistant only loads on the URLs Tuqui "
+"knows: web.base.url, the websites' domains and these."
+msgstr ""
+
+#. module: tuqui
+#: model_terms:ir.ui.view,arch_db:tuqui.res_config_settings_view_form
+msgid ""
+"Other URLs people open this Odoo from. Tuqui Assistant only loads on\n"
+"                            this Odoo's main URL, its websites' domains and these."
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields,help:tuqui.field_tuqui_activation_nonce__event_signing_key
+msgid ""
+"Outgoing event signing key as it stood when this nonce was issued, kept "
+"under the same rules as the secret beside it: NULL after consume, gone when "
+"the row expires. Snapshotted rather than read live at exchange time because "
+"a later activation attempt rotates both credentials, and an older nonce "
+"redeemed afterwards has to hand Tuqui the pair that was minted together."
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields.selection,name:tuqui.selection__tuqui_event__state__pending
+msgid "Pending"
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields.selection,name:tuqui.selection__res_config_settings__tuqui_state__pending
+#: model:ir.model.fields.selection,name:tuqui.selection__tuqui_oauth_client__state__pending
+msgid "Pending activation"
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields,field_description:tuqui.field_tuqui_access_log__policy_allowed
+msgid "Policy Allowed"
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields,field_description:tuqui.field_tuqui_access_log__policy_denied_reason
+msgid "Policy Denied Reason"
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields.selection,name:tuqui.selection__tuqui_access_log__operation_type__private_execute
+msgid "Private execute"
+msgstr ""
+
+#. module: tuqui
+#: model_terms:ir.ui.view,arch_db:tuqui.view_tuqui_event_list
+msgid "Queued"
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields.selection,name:tuqui.selection__tuqui_access_log__operation_type__read
+msgid "Read"
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields,field_description:tuqui.field_tuqui_oauth_client__read_only
+#: model_terms:ir.ui.view,arch_db:tuqui.res_config_settings_view_form
+msgid "Read-only mode"
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields,field_description:tuqui.field_tuqui_event__res_id
+msgid "Record ID"
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields,field_description:tuqui.field_tuqui_oauth_client__reported_embed_origins
+msgid "Reported Embed Origins"
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields,field_description:tuqui.field_tuqui_access_log__result_count
+msgid "Result Count"
+msgstr ""
+
+#. module: tuqui
+#: model_terms:ir.ui.view,arch_db:tuqui.view_tuqui_event_list
+msgid "Retry"
+msgstr ""
+
+#. module: tuqui
+#: model_terms:ir.ui.view,arch_db:tuqui.view_tuqui_access_log_search
+msgid "Runtime failed"
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model,name:tuqui.model_ir_cron
+msgid "Scheduled Action"
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields.selection,name:tuqui.selection__tuqui_event__state__sent
+msgid "Sent"
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields,field_description:tuqui.field_tuqui_event__sent_at
+msgid "Sent At"
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model,name:tuqui.model_ir_actions_server
+msgid "Server Action"
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields,help:tuqui.field_tuqui_oauth_client__activation_pending
+msgid ""
+"Set by /exchange after credentials are handed to Tuqui. Cleared when the "
+"first /token succeeds — that call is the proof that Tuqui's own workspace "
+"wiring completed and state flips to 'active'."
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields,help:tuqui.field_tuqui_oauth_client__event_signing_key
+msgid ""
+"Shared key this Odoo signs outgoing events with (tuqui.event). Stored in "
+"plaintext because signing requires the key itself — a hash cannot produce a "
+"signature. Handed to Tuqui once, in the same activation exchange as the "
+"client secret, and replaced whenever that secret is rotated."
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields,help:tuqui.field_tuqui_access_log__result_count
+msgid "Size of the returned data (rows for lists, keys for dicts)."
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields,field_description:tuqui.field_tuqui_event__state
+#: model:ir.model.fields,field_description:tuqui.field_tuqui_oauth_client__state
+#: model_terms:ir.ui.view,arch_db:tuqui.view_tuqui_event_search
+msgid "State"
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields,field_description:tuqui.field_tuqui_access_log__success
+msgid "Success"
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields.selection,name:tuqui.selection__res_config_settings__tuqui_state__test
+#: model:ir.model.fields.selection,name:tuqui.selection__tuqui_oauth_client__state__test
+msgid "Test database"
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields,help:tuqui.field_tuqui_access_log__acting_user_id
+msgid ""
+"The Odoo member resolved from the X-Tuqui-Acting-Uid header (member path). "
+"Empty on the connection path, which runs as superuser with no per-member "
+"identity."
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields,help:tuqui.field_tuqui_event__triggered_by_user_id
+msgid ""
+"The Odoo user whose write produced this event. Tuqui records it for "
+"attribution and delivery — who asked, who gets told, who the result is "
+"credited to. It never decides which credentials the agent runs with."
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields,help:tuqui.field_ir_actions_server__tuqui_agent_id
+#: model:ir.model.fields,help:tuqui.field_ir_cron__tuqui_agent_id
+msgid "The Tuqui agent this automation notifies."
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields,help:tuqui.field_tuqui_oauth_client__copy_parent_client_id
+msgid ""
+"The client id this copy inherited, kept until it registered as a test "
+"database."
+msgstr ""
+
+#. module: tuqui
+#. odoo-python
+#: code:addons/tuqui/models/ir_actions_server.py:0
+msgid ""
+"The connection works, but no Tuqui agent is offered to Odoo actions yet. In "
+"Tuqui, a workspace admin turns on the agent's \"Odoo action\" channel — "
+"Agents > the agent > Channels — and it shows up here within a few minutes."
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields,help:tuqui.field_tuqui_oauth_client__copy_pending_secret
+msgid ""
+"The secret this copy registers with, kept until Tuqui accepted it so a retry"
+" sends the same one."
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields,help:tuqui.field_tuqui_oauth_client__copy_parent_signing_key
+msgid ""
+"The signing key this copy inherited. It signs the registration only, which "
+"proves to Tuqui that the copy came from that connection."
+msgstr ""
+
+#. module: tuqui
+#. odoo-python
+#: code:addons/tuqui/models/ir_actions_server.py:0
+msgid "This action has no Tuqui agent selected."
+msgstr ""
+
+#. module: tuqui
+#. odoo-python
+#: code:addons/tuqui/models/res_config_settings.py:0
+msgid "This copy could not be connected as a test database: %s"
+msgstr ""
+
+#. module: tuqui
+#. odoo-python
+#: code:addons/tuqui/models/ir_actions_server.py:0
+msgid ""
+"This database connected to Tuqui before signed events existed, so it has no "
+"signing key yet. Tuqui asks for one on its own within the hour; to do it "
+"now, disconnect and activate again from Settings > Tuqui."
+msgstr ""
+
+#. module: tuqui
+#: model_terms:ir.ui.view,arch_db:tuqui.res_config_settings_view_form
+msgid "This database is a copy of one connected to Tuqui."
+msgstr ""
+
+#. module: tuqui
+#. odoo-python
+#: code:addons/tuqui/models/ir_actions_server.py:0
+msgid ""
+"This database is not connected to Tuqui yet. Connect it from Settings > "
+"Tuqui and the agents will appear here."
+msgstr ""
+
+#. module: tuqui
+#: model_terms:ir.ui.view,arch_db:tuqui.view_tuqui_access_log_list
+msgid "Timestamp"
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields,help:tuqui.field_tuqui_oauth_client__access_count_7d
+msgid "Total RPC calls logged in tuqui.access.log during the last 7 days."
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields,field_description:tuqui.field_tuqui_event__trigger_ref
+msgid "Trigger"
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields,field_description:tuqui.field_tuqui_event__triggered_by_user_id
+#: model_terms:ir.ui.view,arch_db:tuqui.view_tuqui_event_search
+msgid "Triggered by"
+msgstr ""
+
+#. module: tuqui
+#: model_terms:ir.ui.view,arch_db:tuqui.res_config_settings_view_form
+msgid "Tuqui"
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model,name:tuqui.model_tuqui_access_log
+#: model_terms:ir.ui.view,arch_db:tuqui.view_tuqui_access_log_list
+msgid "Tuqui Access Log"
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields,field_description:tuqui.field_res_config_settings__tuqui_access_count_7d
+msgid "Tuqui Accesses (7 days)"
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model,name:tuqui.model_tuqui_activation_nonce
+msgid "Tuqui Activation Nonce"
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields,field_description:tuqui.field_res_config_settings__tuqui_access_summary
+msgid "Tuqui Activity Summary"
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields,field_description:tuqui.field_ir_actions_server__tuqui_agent_id
+#: model:ir.model.fields,field_description:tuqui.field_ir_cron__tuqui_agent_id
+#: model:ir.model.fields,field_description:tuqui.field_tuqui_event__agent_external_id
+msgid "Tuqui Agent"
+msgstr ""
+
+#. module: tuqui
+#: model:ir.module.module,shortdesc:base.module_tuqui
+msgid "Tuqui Companion"
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields,field_description:tuqui.field_res_config_settings__tuqui_state
+msgid "Tuqui Connection State"
+msgstr ""
+
+#. module: tuqui
+#: model:ir.actions.act_window,name:tuqui.action_tuqui_event
+#: model_terms:ir.ui.view,arch_db:tuqui.view_tuqui_event_list
+msgid "Tuqui Events"
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model,name:tuqui.model_tuqui_health
+msgid "Tuqui Health Report"
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields,field_description:tuqui.field_res_config_settings__tuqui_last_seen_at
+msgid "Tuqui Last Activity"
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model,name:tuqui.model_tuqui_oauth_client
+msgid "Tuqui OAuth Client Credentials"
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model,name:tuqui.model_tuqui_event
+msgid "Tuqui Outgoing Event Queue"
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields,field_description:tuqui.field_res_config_settings__tuqui_read_only
+msgid "Tuqui Read-only Mode"
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields,field_description:tuqui.field_tuqui_oauth_client__workspace_id_external
+msgid "Tuqui Workspace ID"
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.constraint,message:tuqui.constraint_tuqui_activation_nonce_nonce_unique
+msgid "Tuqui activation nonce must be unique."
+msgstr ""
+
+#. module: tuqui
+#: model_terms:ir.ui.view,arch_db:tuqui.res_config_settings_view_form
+msgid ""
+"Tuqui can create, update and delete in Odoo — but only on the models\n"
+"                            you enable in the write whitelist in Tuqui's settings.\n"
+"                            Reads still follow each user's own Odoo permissions."
+msgstr ""
+
+#. module: tuqui
+#: model_terms:ir.ui.view,arch_db:tuqui.res_config_settings_view_form
+msgid ""
+"Tuqui can read but never create, update, delete or run methods.\n"
+"                            Reads still follow each user's own Odoo permissions."
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.constraint,message:tuqui.constraint_tuqui_oauth_client_client_id_unique
+msgid "Tuqui client_id must be unique."
+msgstr ""
+
+#. module: tuqui
+#. odoo-python
+#: code:addons/tuqui/models/ir_actions_server.py:0
+msgid "Tuqui credentials need renewing"
+msgstr ""
+
+#. module: tuqui
+#. odoo-python
+#: code:addons/tuqui/models/ir_actions_server.py:0
+msgid ""
+"Tuqui did not answer, so the list could not be loaded. The action can still "
+"be saved if you already know the agent id, and an automation that is already"
+" configured keeps working."
+msgstr ""
+
+#. module: tuqui
+#. odoo-python
+#: code:addons/tuqui/controllers/activation.py:0
+msgid "Tuqui is already activated. Disconnect first to re-activate."
+msgstr ""
+
+#. module: tuqui
+#. odoo-python
+#: code:addons/tuqui/models/res_config_settings.py:0
+msgid "Tuqui is checking this copy. Try again in a minute."
+msgstr ""
+
+#. module: tuqui
+#. odoo-python
+#: code:addons/tuqui/models/ir_actions_server.py:0
+msgid "Tuqui is not connected"
+msgstr ""
+
+#. module: tuqui
+#: model_terms:ir.ui.view,arch_db:tuqui.view_server_action_form_tuqui
+msgid ""
+"Tuqui is notified through a durable queue: if it is\n"
+"                    unreachable the event is retried, and a delivery that never\n"
+"                    succeeds stays on the event list so it can be sent by hand."
+msgstr ""
+
+#. module: tuqui
+#. odoo-python
+#: code:addons/tuqui/models/ir_actions_server.py:0
+msgid "Tuqui unavailable"
+msgstr ""
+
+#. module: tuqui
+#: model:ir.actions.server,name:tuqui.ir_cron_tuqui_event_dispatch_ir_actions_server
+msgid "Tuqui: deliver queued events"
+msgstr ""
+
+#. module: tuqui
+#: model:ir.actions.server,name:tuqui.ir_cron_tuqui_event_gc_ir_actions_server
+msgid "Tuqui: garbage-collect delivered events"
+msgstr ""
+
+#. module: tuqui
+#: model:ir.actions.server,name:tuqui.ir_cron_tuqui_activation_nonce_gc_ir_actions_server
+msgid "Tuqui: garbage-collect old activation nonces"
+msgstr ""
+
+#. module: tuqui
+#: model:ir.actions.server,name:tuqui.ir_cron_tuqui_report_frame_origins_ir_actions_server
+msgid "Tuqui: report this instance's domains"
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields,field_description:tuqui.field_ir_actions_server__state
+#: model:ir.model.fields,field_description:tuqui.field_ir_cron__state
+msgid "Type"
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields,help:tuqui.field_ir_actions_server__state
+#: model:ir.model.fields,help:tuqui.field_ir_cron__state
+msgid ""
+"Type of server action. The following values are available:\n"
+"- 'Update a Record': update the values of a record\n"
+"- 'Create Activity': create an activity (Discuss)\n"
+"- 'Send Email': post a message, a note or send an email (Discuss)\n"
+"- 'Send SMS': send SMS, log them on documents (SMS)- 'Add/Remove Followers': add or remove followers to a record (Discuss)\n"
+"- 'Create Record': create a new record with new values\n"
+"- 'Execute Code': a block of Python code that will be executed\n"
+"- 'Send Webhook Notification': send a POST request to an external system, also known as a Webhook\n"
+"- 'Multi Actions': define an action that triggers several other server actions\n"
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields,field_description:tuqui.field_tuqui_event__uuid
+msgid "Uuid"
+msgstr ""
+
+#. module: tuqui
+#: model_terms:ir.ui.view,arch_db:tuqui.res_config_settings_view_form
+msgid "View access log"
+msgstr ""
+
+#. module: tuqui
+#: model_terms:ir.ui.view,arch_db:tuqui.res_config_settings_view_form
+msgid "View event queue"
+msgstr ""
+
+#. module: tuqui
+#: model_terms:ir.ui.view,arch_db:tuqui.view_tuqui_event_search
+msgid "Waiting to be sent"
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields,help:tuqui.field_tuqui_access_log__duration_ms
+msgid "Wall-clock duration of the policy + ORM call, in milliseconds."
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields,help:tuqui.field_tuqui_oauth_client__read_only
+msgid ""
+"When enabled, Tuqui can only read data from this Odoo; write and execute "
+"operations on the member path are blocked. Safe-by-default. Disable to allow"
+" the AI agent to create, update or delete records."
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields,help:tuqui.field_res_config_settings__tuqui_read_only
+msgid ""
+"When enabled, Tuqui can read but never create, update, delete or run methods"
+" on this database. Reads still follow each user's own Odoo permissions. "
+"Private methods and ORM escape hatches are always blocked regardless of this"
+" flag. Note: read-only is enforced by classifying the method name (not at "
+"the cursor level), so a mutating method whose name starts with read/search "
+"could be classified as a read."
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields,help:tuqui.field_tuqui_event__next_attempt_at
+msgid ""
+"When the cron may try again. Set by the backoff ladder after each failure."
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields,help:tuqui.field_tuqui_access_log__success
+msgid "Whether the ORM call completed without raising."
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields,help:tuqui.field_tuqui_access_log__policy_allowed
+msgid "Whether the policy gate let the call proceed to the ORM."
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields,help:tuqui.field_tuqui_access_log__policy_denied_reason
+msgid ""
+"Why the call was blocked, in the order the gates run: forbidden_acting_user "
+"(resolved before the policy gate, and only on the member path), then "
+"method_blocked, private_method_blocked, connection_read_only, "
+"requires_acting_user, read_only_mode. Empty when policy_allowed is True."
+msgstr ""
+
+#. module: tuqui
+#: model:ir.model.fields.selection,name:tuqui.selection__tuqui_access_log__operation_type__write
+msgid "Write"
+msgstr ""
+
+#. module: tuqui
+#. odoo-python
+#: code:addons/tuqui/models/tuqui_activation_nonce.py:0
+msgid "client_id is required on the activation nonce."
+msgstr ""
+
+#. module: tuqui
+#: model_terms:ir.ui.view,arch_db:tuqui.res_config_settings_view_form
+msgid "https://erp.mycompany.com"
+msgstr ""

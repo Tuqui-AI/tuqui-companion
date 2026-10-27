@@ -1,0 +1,325 @@
+"""Tests for the "Notify Tuqui" server action type.
+
+Coverage mirrors the spec's §Configuración acceptance criteria:
+
+* the action asks for an agent and nothing else — no URL, no token;
+* the agent list is fetched from Tuqui, never mirrored, and cached for minutes
+  rather than re-fetched on every field render;
+* if Tuqui does not answer, only the selector goes empty: an action that was
+  already configured keeps firing;
+* running the action queues events instead of posting them.
+"""
+
+from unittest.mock import patch
+
+from odoo.exceptions import UserError
+from odoo.tests import TransactionCase, tagged
+from odoo.tools import mute_logger
+
+from ..models import ir_actions_server as action_mod
+
+
+class _Response:
+    def __init__(self, payload, status_code=200):
+        self._payload = payload
+        self.status_code = status_code
+
+    def raise_for_status(self):
+        if self.status_code >= 400:
+            raise OSError(f"HTTP {self.status_code}")
+
+    def json(self):
+        return self._payload
+
+
+_AGENTS = {
+    "agents": [
+        {"id": "11111111-1111-1111-1111-111111111111", "name": "Minutes", "ready": True, "blocked_reason": None},
+        {
+            "id": "22222222-2222-2222-2222-222222222222",
+            "name": "Leads",
+            "ready": False,
+            "blocked_reason": "This agent declares no service identity to run as",
+        },
+    ]
+}
+
+
+@tagged("post_install", "-at_install", "tuqui")
+class TestTuquiNotifyAction(TransactionCase):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.Action = cls.env["ir.actions.server"].sudo()
+        cls.client = cls.env["tuqui.oauth.client"].sudo()._get_or_create_singleton()[0]
+        cls.client.write({"event_signing_key": "test-signing-key", "state": "active"})
+        cls.partner_model = cls.env["ir.model"]._get("res.partner")
+
+    def setUp(self):
+        super().setUp()
+        # The cache is per-process and would leak between tests.
+        action_mod._agent_cache.clear()
+
+    def _action(self, **overrides):
+        values = {
+            "name": "Notify Tuqui",
+            "model_id": self.partner_model.id,
+            "state": "tuqui_notify",
+            "tuqui_agent_id": "11111111-1111-1111-1111-111111111111",
+        }
+        values.update(overrides)
+        return self.Action.create(values)
+
+    # ─── The selector ────────────────────────────────────────────────────────
+
+    def test_the_list_comes_from_tuqui(self):
+        with patch(
+            "odoo.addons.tuqui.models.ir_actions_server.requests.get",
+            return_value=_Response(_AGENTS),
+        ):
+            choices = self.Action._tuqui_agent_choices()
+        assert dict(choices)["11111111-1111-1111-1111-111111111111"] == "Minutes"
+
+    def test_an_agent_that_cannot_run_is_offered_with_the_reason(self):
+        """Hiding it would answer "where is my agent?" with silence."""
+        with patch(
+            "odoo.addons.tuqui.models.ir_actions_server.requests.get",
+            return_value=_Response(_AGENTS),
+        ):
+            label = dict(self.Action._tuqui_agent_choices())["22222222-2222-2222-2222-222222222222"]
+        assert "no service identity" in label
+
+    def test_the_list_is_cached_instead_of_fetched_per_render(self):
+        """A dynamic Selection is evaluated on every form load; without the cache
+        opening a list of automations would be one HTTP call per row."""
+        with patch(
+            "odoo.addons.tuqui.models.ir_actions_server.requests.get",
+            return_value=_Response(_AGENTS),
+        ) as get:
+            self.Action._tuqui_agent_choices()
+            self.Action._tuqui_agent_choices()
+            self.Action._tuqui_agent_choices()
+        assert get.call_count == 1
+
+    def test_the_request_is_signed(self):
+        with patch(
+            "odoo.addons.tuqui.models.ir_actions_server.requests.get",
+            return_value=_Response(_AGENTS),
+        ) as get:
+            self.Action._tuqui_agent_choices()
+        headers = get.call_args.kwargs["headers"]
+        assert headers["X-Tuqui-Client-Id"] == self.client.client_id
+        assert headers["X-Tuqui-Signature"].startswith("t=")
+        assert ",v1=" in headers["X-Tuqui-Signature"]
+
+    @mute_logger("odoo.addons.tuqui.models.ir_actions_server")
+    def test_a_tuqui_that_is_down_yields_an_empty_list_and_no_traceback(self):
+        """@mute_logger: an unreachable Tuqui deserves a warning in production,
+        but this test causes it on purpose and runbot counts any WARNING in the
+        log as a build failure."""
+        with patch(
+            "odoo.addons.tuqui.models.ir_actions_server.requests.get",
+            side_effect=OSError("connection refused"),
+        ):
+            assert self.Action._tuqui_agent_choices() == []
+
+    @mute_logger("odoo.addons.tuqui.models.ir_actions_server")
+    def test_an_action_already_configured_keeps_its_agent_when_tuqui_is_down(self):
+        """The point of storing the id rather than a foreign key: only the
+        selector degrades, never the automation."""
+        action = self._action()
+        action_mod._agent_cache.clear()
+        with patch(
+            "odoo.addons.tuqui.models.ir_actions_server.requests.get",
+            side_effect=OSError("connection refused"),
+        ):
+            assert self.Action._tuqui_agent_choices() == []
+        assert action.tuqui_agent_id == "11111111-1111-1111-1111-111111111111"
+
+    def test_a_database_not_connected_to_tuqui_asks_nothing(self):
+        self.client.write({"state": "pending"})
+        try:
+            with patch("odoo.addons.tuqui.models.ir_actions_server.requests.get") as get:
+                assert self.Action._tuqui_agent_choices() == []
+            get.assert_not_called()
+        finally:
+            self.client.write({"state": "active"})
+
+    # ─── Por qué la lista vino vacía ─────────────────────────────────────────
+
+    def test_a_database_not_connected_says_so(self):
+        """The message an admin actually needs: connect the database. Saying
+        "could not be loaded" here sends them to look for a network problem
+        that does not exist."""
+        self.client.write({"state": "pending"})
+        try:
+            assert self.Action._tuqui_agent_problem() == action_mod._NOT_CONNECTED
+        finally:
+            self.client.write({"state": "active"})
+
+    def test_a_database_without_a_signing_key_says_so(self):
+        """Every database that connected before signed events existed is here."""
+        self.client.write({"event_signing_key": False})
+        try:
+            with patch("odoo.addons.tuqui.models.ir_actions_server.requests.get") as get:
+                assert self.Action._tuqui_agent_problem() == action_mod._NO_SIGNING_KEY
+            get.assert_not_called()
+        finally:
+            self.client.write({"event_signing_key": "test-signing-key"})
+
+    @mute_logger("odoo.addons.tuqui.models.ir_actions_server")
+    def test_a_tuqui_that_does_not_answer_says_so(self):
+        with patch(
+            "odoo.addons.tuqui.models.ir_actions_server.requests.get",
+            side_effect=OSError("connection refused"),
+        ):
+            assert self.Action._tuqui_agent_problem() == action_mod._UNREACHABLE
+
+    def test_a_list_with_nobody_offered_says_so(self):
+        """Nothing is broken here, and it is not "the workspace is empty" either.
+
+        Tuqui lists only the agents whose `odoo_action` channel is on, so this is
+        the normal state of a workspace where nobody has offered one yet — and
+        telling that admin to go and create an agent would send them to build a
+        second one next to the one they already have.
+        """
+        with patch(
+            "odoo.addons.tuqui.models.ir_actions_server.requests.get",
+            return_value=_Response({"agents": []}),
+        ):
+            assert self.Action._tuqui_agent_problem() == action_mod._NONE_OFFERED
+
+    def test_the_empty_list_points_at_the_switch_that_fills_it(self):
+        """The fix lives in another product, on a tab this admin may never have
+        opened, so the message names it."""
+        message = self.Action._tuqui_problem_message(action_mod._NONE_OFFERED)
+
+        assert "Odoo action" in message
+        assert "Channels" in message
+
+    def test_a_working_list_has_no_problem(self):
+        with patch(
+            "odoo.addons.tuqui.models.ir_actions_server.requests.get",
+            return_value=_Response(_AGENTS),
+        ):
+            assert self.Action._tuqui_agent_problem() is None
+
+    def test_each_problem_has_its_own_message(self):
+        """Four causes, four things to do about them. One message for all of
+        them read as "something broke" even in the two cases where nothing did."""
+        problems = [
+            action_mod._NOT_CONNECTED,
+            action_mod._NO_SIGNING_KEY,
+            action_mod._UNREACHABLE,
+            action_mod._NONE_OFFERED,
+        ]
+        messages = {self.Action._tuqui_problem_message(p) for p in problems}
+        titles = {self.Action._tuqui_problem_title(p) for p in problems}
+        assert len(messages) == 4
+        assert len(titles) == 4
+
+    # ─── Running ─────────────────────────────────────────────────────────────
+
+    def test_running_queues_one_event_per_record_without_http(self):
+        action = self._action()
+        partners = self.env["res.partner"].create([{"name": "One"}, {"name": "Two"}])
+
+        with patch("odoo.addons.tuqui.models.tuqui_event.requests.post") as post:
+            action.with_context(active_ids=partners.ids)._run_action_tuqui_notify_multi({"records": partners})
+
+        post.assert_not_called()
+        events = self.env["tuqui.event"].search([("res_model", "=", "res.partner"), ("res_id", "in", partners.ids)])
+        assert len(events) == 2
+        assert set(events.mapped("state")) == {"pending"}
+        assert set(events.mapped("agent_external_id")) == {"11111111-1111-1111-1111-111111111111"}
+
+    def test_an_action_without_an_agent_says_so(self):
+        action = self._action(tuqui_agent_id=False)
+        partner = self.env["res.partner"].create({"name": "One"})
+        with self.assertRaises(UserError):
+            action._run_action_tuqui_notify_multi({"records": partner})
+
+    # ─── Anti-loop ───────────────────────────────────────────────────────────
+
+    def _events_for(self, partner):
+        return self.env["tuqui.event"].search([("res_model", "=", "res.partner"), ("res_id", "=", partner.id)])
+
+    def test_a_write_from_the_same_agent_does_not_notify_it_again(self):
+        """The companion marks a call made by an agent run; that agent must not
+        wake itself up through its own writes."""
+        action = self._action()
+        partner = self.env["res.partner"].create({"name": "One"})
+        action.with_context(tuqui_agent_run_id="11111111-1111-1111-1111-111111111111")._run_action_tuqui_notify_multi(
+            {"records": partner}
+        )
+        assert not self._events_for(partner)
+
+    def test_a_write_from_another_agent_still_notifies(self):
+        action = self._action()
+        partner = self.env["res.partner"].create({"name": "One"})
+        action.with_context(tuqui_agent_run_id="33333333-3333-3333-3333-333333333333")._run_action_tuqui_notify_multi(
+            {"records": partner}
+        )
+        assert len(self._events_for(partner)) == 1
+
+    def test_a_change_made_by_a_person_starts_the_chain_at_zero(self):
+        action = self._action()
+        partner = self.env["res.partner"].create({"name": "One"})
+        action._run_action_tuqui_notify_multi({"records": partner})
+        event = self._events_for(partner)
+        assert event.chain_depth == 0
+        assert "chain_depth" not in event._payload()
+
+    def test_a_write_from_another_agent_adds_one_to_its_depth(self):
+        """Tuqui refuses the event past its cap; Odoo only counts the links."""
+        action = self._action()
+        partner = self.env["res.partner"].create({"name": "One"})
+        action.with_context(
+            tuqui_agent_run_id="33333333-3333-3333-3333-333333333333", tuqui_agent_run_depth=2
+        )._run_action_tuqui_notify_multi({"records": partner})
+        event = self._events_for(partner)
+        assert event.chain_depth == 3
+        assert event._payload()["chain_depth"] == 3
+
+    def test_an_agent_run_without_a_depth_counts_as_the_first_link(self):
+        """An older Tuqui sends the agent but no depth."""
+        action = self._action()
+        partner = self.env["res.partner"].create({"name": "One"})
+        action.with_context(tuqui_agent_run_id="33333333-3333-3333-3333-333333333333")._run_action_tuqui_notify_multi(
+            {"records": partner}
+        )
+        assert self._events_for(partner).chain_depth == 1
+
+    # ─── Payload ─────────────────────────────────────────────────────────────
+
+    def test_a_plain_action_keeps_the_payload_as_it_was(self):
+        action = self._action()
+        partner = self.env["res.partner"].create({"name": "One"})
+        action._run_action_tuqui_notify_multi({"records": partner})
+        payload = self._events_for(partner)._payload()
+        assert set(payload) == {"database_uuid", "idempotency_key", "agent_id", "model", "res_id", "triggered_by"}
+
+    def test_the_hook_adds_keys_without_overriding_the_base_ones(self):
+        action = self._action()
+        partner = self.env["res.partner"].create({"name": "One"})
+        extra = {"automation": {"id": 7, "name": "Rule"}, "model": "should.not.win"}
+        with patch.object(type(action), "_tuqui_notify_trigger_ref", lambda self: extra):
+            action._run_action_tuqui_notify_multi({"records": partner})
+        payload = self._events_for(partner)._payload()
+        assert payload["automation"] == {"id": 7, "name": "Rule"}
+        assert payload["model"] == "res.partner"
+
+    # ─── The "Agent in Tuqui" button ─────────────────────────────────────────
+
+    def test_the_button_opens_the_agent_in_tuqui(self):
+        self.env["ir.config_parameter"].sudo().set_str("tuqui.base_url", "https://tuqui.com")
+        self.client.write({"workspace_id_external": "acme-sa"})
+        action = self._action().action_open_tuqui_agent()
+        self.assertEqual((action["type"], action["target"]), ("ir.actions.act_url", "new"))
+        self.assertEqual(
+            action["url"], "https://tuqui.com/w/acme-sa/agents/11111111-1111-1111-1111-111111111111/edit?tab=channels"
+        )
+
+    def test_the_cron_form_still_validates(self):
+        # The cron form inherits the server action form, button included.
+        self.env.ref("base.ir_cron_view_form")._check_xml()
