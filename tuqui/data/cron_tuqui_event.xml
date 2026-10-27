@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+
+    <!--
+        The dispatcher. An event leaves within seconds because queuing it wakes
+        this cron (`_trigger`, saved in the same transaction), and each retry
+        wakes it again at its time: the pattern of Odoo's own AI crons. The
+        interval is only a far-off safety net, so a database that never queues
+        anything never runs it.
+
+        Existing databases get the new interval from the 19.0.0.31.0 migration:
+        this record is noupdate.
+    -->
+    <record id="ir_cron_tuqui_event_dispatch" model="ir.cron">
+        <field name="name">Tuqui: deliver queued events</field>
+        <field name="model_id" ref="model_tuqui_event"/>
+        <field name="state">code</field>
+        <field name="code">model._cron_dispatch()</field>
+        <field name="interval_number">9999</field>
+        <field name="interval_type">months</field>
+        <field name="active">True</field>
+    </record>
+
+    <!--
+        Retention. Daily is plenty for a window measured in weeks, and keeping
+        it separate from the dispatcher means a failure to deliver never stops
+        the housekeeping, nor the other way round.
+    -->
+    <record id="ir_cron_tuqui_event_gc" model="ir.cron">
+        <field name="name">Tuqui: garbage-collect delivered events</field>
+        <field name="model_id" ref="model_tuqui_event"/>
+        <field name="state">code</field>
+        <field name="code">model._gc_old_events()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="active">True</field>
+    </record>
+
+</odoo>

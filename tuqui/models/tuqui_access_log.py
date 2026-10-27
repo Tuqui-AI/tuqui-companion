@@ -1,0 +1,181 @@
+from odoo import api, fields, models
+
+_DEFAULT_MAX_ROWS = 10000
+
+# Sentinel for the (rare) case where the controller hits an error path
+# before classification — we still want a stable, queryable value.
+_UNKNOWN_OPERATION_TYPE = "any"
+
+# Cap for the two indexed fields that carry request-supplied text. Well under
+# Postgres' ~2704-byte btree entry limit, and far above any real model or
+# method name, so a genuine row is never altered — see the field comments.
+_MAX_AUDIT_CHARS = 256
+
+
+def _clip(value):
+    """Bound a request-supplied string so the audit INSERT cannot fail.
+
+    An audit row that raises takes the whole request with it, replacing a
+    composed error response with Odoo's 500 page. Losing the tail of an absurd
+    name costs nothing; losing the row and the response costs the caller its
+    answer and us the trace.
+    """
+    if not value:
+        return value
+    return value[:_MAX_AUDIT_CHARS]
+
+
+class TuquiAccessLog(models.Model):
+    """Audit log for every call routed through ``/tuqui/rpc``.
+
+    Each row records one logical RPC: who acted (``acting_user_id``),
+    what was called (``model_name`` + ``method`` + ``operation_type``),
+    how the policy ruled (``policy_allowed`` + ``policy_denied_reason``)
+    and what happened next (``success`` + ``error_code`` + ``duration_ms``
+    + ``result_count``).
+
+    The two-axis design (policy vs runtime) makes audit queries
+    unambiguous — ``policy_allowed=False`` always means the gateway
+    blocked the call before reaching the ORM, while ``success=False``
+    with ``policy_allowed=True`` means Odoo executed and raised. Mixing
+    those two states into one field made the SQL ambiguous in practice.
+
+    Capped by row count (``tuqui.access_log.max_rows``, default 10k) to
+    keep the table bounded without coupling to a time-based retention.
+    """
+
+    _name = "tuqui.access.log"
+    _description = "Tuqui Access Log"
+    _order = "id desc"
+    _rec_name = "method"
+
+    acting_user_id = fields.Many2one(
+        "res.users",
+        ondelete="set null",
+        index=True,
+        help=(
+            "The Odoo member resolved from the X-Tuqui-Acting-Uid header "
+            "(member path). Empty on the connection path, which runs as "
+            "superuser with no per-member identity."
+        ),
+    )
+    # Both come straight off the request body, which the gateway only checks
+    # for "non-empty string" — and both are indexed. A btree entry cannot
+    # exceed about 2704 bytes, so a caller asking for a 20 KB model name made
+    # the audit INSERT fail, and with it the whole request: the client got
+    # Odoo's 500 HTML page instead of the 400 the gateway had already composed.
+    # Truncated in ``log`` rather than declared with ``size``, so the cap is
+    # enforced for every caller and an existing column needs no migration.
+    model_name = fields.Char(string="Model", index=True)
+    method = fields.Char(required=True, index=True)
+    operation_type = fields.Selection(
+        [
+            ("read", "Read"),
+            ("write", "Write"),
+            ("execute", "Execute"),
+            ("private_execute", "Private execute"),
+            ("any", "Any"),
+        ],
+        required=True,
+        default=_UNKNOWN_OPERATION_TYPE,
+        index=True,
+    )
+
+    # ─── Policy axis ──────────────────────────────────────────────────
+    policy_allowed = fields.Boolean(
+        default=True,
+        index=True,
+        help="Whether the policy gate let the call proceed to the ORM.",
+    )
+    policy_denied_reason = fields.Char(
+        help=(
+            "Why the call was blocked, in the order the gates run: "
+            "forbidden_acting_user (resolved before the policy gate, and only "
+            "on the member path), then method_blocked, private_method_blocked, "
+            "connection_read_only, requires_acting_user, read_only_mode. "
+            "Empty when policy_allowed is True."
+        ),
+    )
+
+    # ─── Runtime axis ─────────────────────────────────────────────────
+    success = fields.Boolean(
+        default=True,
+        index=True,
+        help="Whether the ORM call completed without raising.",
+    )
+    error_code = fields.Char(
+        help=(
+            "Error classification when success is False. One of: "
+            "access_denied, validation_error, internal_error. "
+            "Empty when success is True."
+        ),
+    )
+
+    # ─── Telemetry ────────────────────────────────────────────────────
+    duration_ms = fields.Integer(
+        default=0,
+        help="Wall-clock duration of the policy + ORM call, in milliseconds.",
+    )
+    result_count = fields.Integer(
+        default=0,
+        help="Size of the returned data (rows for lists, keys for dicts).",
+    )
+
+    @api.model
+    def log(
+        self,
+        *,
+        method,
+        model_name=None,
+        operation_type=_UNKNOWN_OPERATION_TYPE,
+        acting_user_id=None,
+        policy_allowed=True,
+        policy_denied_reason=None,
+        success=True,
+        error_code=None,
+        duration_ms=0,
+        result_count=0,
+    ):
+        """Append one audit row.
+
+        Keyword-only on purpose: the field list grew enough that positional
+        calls would silently shift on schema changes.
+        """
+        return self.sudo().create(
+            {
+                "method": _clip(method),
+                "model_name": _clip(model_name) or False,
+                "operation_type": operation_type,
+                "acting_user_id": acting_user_id or False,
+                "policy_allowed": policy_allowed,
+                "policy_denied_reason": policy_denied_reason or False,
+                "success": success,
+                "error_code": error_code or False,
+                "duration_ms": int(duration_ms or 0),
+                "result_count": int(result_count or 0),
+            }
+        )
+
+    @api.model
+    def _max_rows(self):
+        """Return the configured row cap, falling back to _DEFAULT_MAX_ROWS.
+
+        Enforces a hard floor of 100 so a misconfigured value can't truncate
+        the table to a useless size.
+        """
+        raw = self.env["ir.config_parameter"].sudo().get_param("tuqui.access_log.max_rows", _DEFAULT_MAX_ROWS)
+        try:
+            return max(int(raw), 100)
+        except (TypeError, ValueError):
+            return _DEFAULT_MAX_ROWS
+
+    @api.autovacuum
+    def _gc_old_logs(self):
+        """Delete the oldest rows that exceed the configured cap."""
+        max_rows = self._max_rows()
+        total = self.sudo().search_count([])
+        excess = total - max_rows
+        if excess <= 0:
+            return
+        oldest = self.sudo().search([], order="id asc", limit=excess)
+        oldest.unlink()
