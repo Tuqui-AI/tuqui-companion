@@ -125,7 +125,7 @@ msgid ""
 "activation; every call Tuqui makes runs with the acting user's own "
 "permissions and is recorded in the access log."
 msgstr ""
-"Conectá esta base a Tuqui, el asistente de IA para Odoo. Se activa con un "
+"Conecte esta base a Tuqui, el asistente de IA para Odoo. Se activa con un "
 "clic; cada llamada de Tuqui corre con los permisos del usuario que actúa y "
 "queda en el registro de accesos."
 
@@ -473,7 +473,7 @@ msgid ""
 "                            Reads still follow each user's own Odoo permissions."
 msgstr ""
 "Tuqui puede crear, modificar y borrar en Odoo, pero solo en los modelos\n"
-"                            que habilites en la lista de escritura de los ajustes de Tuqui.\n"
+"                            que habilite en la lista de escritura de los ajustes de Tuqui.\n"
 "                            Las lecturas siguen los permisos de Odoo de cada usuario."
 
 #. module: tuqui
@@ -495,7 +495,7 @@ msgstr "El client_id de Tuqui tiene que ser único."
 #: code:addons/tuqui/controllers/activation.py:0
 #, python-format
 msgid "Tuqui is already activated. Disconnect first to re-activate."
-msgstr "Tuqui ya está activado. Desconectalo antes de volver a activarlo."
+msgstr "Tuqui ya está activado. Desconéctelo antes de volver a activarlo."
 
 #. module: tuqui
 #: model:ir.actions.server,name:tuqui.ir_cron_tuqui_activation_nonce_gc_ir_actions_server
