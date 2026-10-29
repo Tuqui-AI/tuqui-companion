@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_base_automation_tuqui_triggers,base.automation tuqui triggers,base_automation.model_base_automation,group_tuqui_triggers,1,1,1,1
+access_ir_model_tuqui_triggers,ir.model tuqui triggers,base.model_ir_model,group_tuqui_triggers,1,0,0,0
+access_ir_model_fields_tuqui_triggers,ir.model.fields tuqui triggers,base.model_ir_model_fields,group_tuqui_triggers,1,0,0,0
+access_ir_model_fields_selection_tuqui_triggers,ir.model.fields.selection tuqui triggers,base.model_ir_model_fields_selection,group_tuqui_triggers,1,0,0,0

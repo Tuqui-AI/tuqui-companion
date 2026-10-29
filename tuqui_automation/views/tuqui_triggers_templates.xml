@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- web.layout and not web.frontend_layout: with website installed the latter
+         expects a website in the request, and these routes do not load one.
+         No asset bundle for the same reason: the styles are inline. -->
+    <template id="triggers_no_access" name="Tuqui triggers: no access">
+        <t t-call="web.layout">
+            <t t-set="head">
+                <meta name="viewport" content="width=device-width, initial-scale=1" />
+                <style>
+                    body { margin: 0; background: #f6f7f9; font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; color: #1f2328; }
+                    .o_tuqui_triggers_no_access { max-width: 32rem; margin: 4rem auto; padding: 2rem; background: #fff; border: 1px solid #d8dde3; border-radius: .75rem; }
+                    .o_tuqui_triggers_no_access h1 { font-size: 1.25rem; margin: 0 0 1rem; }
+                    .o_tuqui_triggers_no_access p { color: #59636e; line-height: 1.5; margin: 0 0 1.5rem; }
+                    .o_tuqui_triggers_no_access a { display: inline-block; padding: .5rem 1rem; border-radius: .375rem; background: #714b67; color: #fff; text-decoration: none; }
+                </style>
+            </t>
+            <div class="o_tuqui_triggers_no_access">
+                <h1 t-out="title" />
+                <p t-out="message" />
+                <a href="/odoo" t-out="back_label" />
+            </div>
+        </t>
+    </template>
+</odoo>

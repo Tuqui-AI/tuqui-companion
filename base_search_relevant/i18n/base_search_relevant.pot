@@ -1,0 +1,507 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* base_search_relevant
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-29 12:15+0000\n"
+"PO-Revision-Date: 2026-10-29 12:15+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: base_search_relevant
+#. odoo-python
+#: code:addons/base_search_relevant/models/search_relevant_config.py:0
+msgid "%(model)s does not accept this domain: %(error)s"
+msgstr ""
+
+#. module: base_search_relevant
+#. odoo-python
+#: code:addons/base_search_relevant/models/search_relevant_config.py:0
+msgid "%s cannot be searched."
+msgstr ""
+
+#. module: base_search_relevant
+#. odoo-python
+#: code:addons/base_search_relevant/models/search_relevant_config.py:0
+msgid ""
+"%s does not track modification dates, so its index could not stay current."
+msgstr ""
+
+#. module: base_search_relevant
+#. odoo-python
+#: code:addons/base_search_relevant/models/search_relevant_config.py:0
+msgid "%s is not a regular database model and cannot be searched."
+msgstr ""
+
+#. module: base_search_relevant
+#. odoo-python
+#: code:addons/base_search_relevant/models/search_relevant_config.py:0
+msgid ""
+"%s is still indexed. Archive it first: the index is deleted in the "
+"background, and the configuration can be deleted once it is empty."
+msgstr ""
+
+#. module: base_search_relevant
+#: model:ir.model.constraint,message:base_search_relevant.constraint_search_relevant_document_config_res_unique
+msgid "A record can only be indexed once per enabled model."
+msgstr ""
+
+#. module: base_search_relevant
+#: model:ir.model.fields,field_description:base_search_relevant.field_search_relevant_config__active
+msgid "Active"
+msgstr ""
+
+#. module: base_search_relevant
+#: model_terms:ir.ui.view,arch_db:base_search_relevant.view_search_relevant_config_form
+msgid "Archived"
+msgstr ""
+
+#. module: base_search_relevant
+#: model:ir.model.fields,help:base_search_relevant.field_search_relevant_config__cleanup_pending
+msgid "Archived, and its index rows are still being deleted by the cron."
+msgstr ""
+
+#. module: base_search_relevant
+#: model:ir.model.fields,help:base_search_relevant.field_search_relevant_config__active
+msgid ""
+"Archiving a model stops its search at once; the cron then deletes its index "
+"rows in the background."
+msgstr ""
+
+#. module: base_search_relevant
+#. odoo-python
+#: code:addons/base_search_relevant/models/search_relevant_config.py:0
+msgid "At most %s fields can be indexed per model."
+msgstr ""
+
+#. module: base_search_relevant
+#: model:ir.model.fields,field_description:base_search_relevant.field_search_relevant_config__backfill_cursor
+msgid "Backfill Cursor"
+msgstr ""
+
+#. module: base_search_relevant
+#: model:ir.model.fields,field_description:base_search_relevant.field_search_relevant_config__backfill_done
+msgid "Backfill Done"
+msgstr ""
+
+#. module: base_search_relevant
+#: model:ir.model.fields,field_description:base_search_relevant.field_search_relevant_config__backfill_reached
+msgid "Backfill Reached"
+msgstr ""
+
+#. module: base_search_relevant
+#: model:ir.model.fields,field_description:base_search_relevant.field_search_relevant_config__backfill_total
+msgid "Backfill Total"
+msgstr ""
+
+#. module: base_search_relevant
+#: model:ir.model.fields,field_description:base_search_relevant.field_search_relevant_config__chatter_models
+msgid "Chatter Models"
+msgstr ""
+
+#. module: base_search_relevant
+#. odoo-python
+#: code:addons/base_search_relevant/models/search_relevant_config.py:0
+msgid "Choose at least one field to index for %s."
+msgstr ""
+
+#. module: base_search_relevant
+#: model:ir.model.fields,field_description:base_search_relevant.field_search_relevant_config__cleanup_pending
+msgid "Cleanup Pending"
+msgstr ""
+
+#. module: base_search_relevant
+#: model:ir.model.fields,field_description:base_search_relevant.field_search_relevant_document__config_id
+msgid "Config"
+msgstr ""
+
+#. module: base_search_relevant
+#: model:ir.model,name:base_search_relevant.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: base_search_relevant
+#: model:ir.model.fields,field_description:base_search_relevant.field_search_relevant_config__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: base_search_relevant
+#: model:ir.model.fields,field_description:base_search_relevant.field_search_relevant_config__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: base_search_relevant
+#: model:ir.model.fields,field_description:base_search_relevant.field_mail_message__display_name
+#: model:ir.model.fields,field_description:base_search_relevant.field_res_config_settings__display_name
+#: model:ir.model.fields,field_description:base_search_relevant.field_search_relevant__display_name
+#: model:ir.model.fields,field_description:base_search_relevant.field_search_relevant_config__display_name
+#: model:ir.model.fields,field_description:base_search_relevant.field_search_relevant_document__display_name
+#: model:ir.model.fields,field_description:base_search_relevant.field_tuqui_health__display_name
+#: model:ir.model.fields,field_description:base_search_relevant.field_tuqui_search__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: base_search_relevant
+#: model:ir.model.fields,field_description:base_search_relevant.field_search_relevant_config__domain
+msgid "Domain"
+msgstr ""
+
+#. module: base_search_relevant
+#: model_terms:ir.actions.act_window,help:base_search_relevant.action_search_relevant_config
+msgid "Enable relevance search on a model"
+msgstr ""
+
+#. module: base_search_relevant
+#: model:ir.model.fields,help:base_search_relevant.field_search_relevant_config__sync_cursor
+msgid ""
+"Every id up to this one is indexed, left to the backfill, or outside the "
+"domain. Searches read the records above it live."
+msgstr ""
+
+#. module: base_search_relevant
+#: model:ir.model.fields,help:base_search_relevant.field_search_relevant_config__sync_watermark
+msgid "Everything written before this moment is in the index."
+msgstr ""
+
+#. module: base_search_relevant
+#. odoo-python
+#: code:addons/base_search_relevant/models/search_relevant_config.py:0
+msgid ""
+"Field %(field)s cannot be indexed: only text, char and HTML fields stored in"
+" the %(model)s table can."
+msgstr ""
+
+#. module: base_search_relevant
+#. odoo-python
+#: code:addons/base_search_relevant/models/search_relevant_config.py:0
+msgid "Field %s does not belong to %s."
+msgstr ""
+
+#. module: base_search_relevant
+#: model:ir.model.fields,help:base_search_relevant.field_search_relevant_document__layout
+msgid ""
+"Field layout and normalization this row was built with "
+"(search.relevant.config.layout)."
+msgstr ""
+
+#. module: base_search_relevant
+#: model:ir.model.fields,field_description:base_search_relevant.field_mail_message__id
+#: model:ir.model.fields,field_description:base_search_relevant.field_res_config_settings__id
+#: model:ir.model.fields,field_description:base_search_relevant.field_search_relevant__id
+#: model:ir.model.fields,field_description:base_search_relevant.field_search_relevant_config__id
+#: model:ir.model.fields,field_description:base_search_relevant.field_search_relevant_document__id
+#: model:ir.model.fields,field_description:base_search_relevant.field_tuqui_health__id
+#: model:ir.model.fields,field_description:base_search_relevant.field_tuqui_search__id
+msgid "ID"
+msgstr ""
+
+#. module: base_search_relevant
+#: model:ir.model.fields,help:base_search_relevant.field_search_relevant_config__append_only
+msgid ""
+"Index new records only. The freshness pass then walks by id, which reads the"
+" primary key instead of scanning the whole table for recent writes. On a "
+"table of millions of rows, like the chatter, that scan is most of what the "
+"index costs. The price: a change to a record already indexed is not picked "
+"up, and its old text keeps matching until the model is re-indexed."
+msgstr ""
+
+#. module: base_search_relevant
+#: model:ir.model.fields,field_description:base_search_relevant.field_search_relevant_document__indexed_at
+msgid "Indexed At"
+msgstr ""
+
+#. module: base_search_relevant
+#: model:ir.model.fields,field_description:base_search_relevant.field_search_relevant_config__field_ids
+msgid "Indexed fields"
+msgstr ""
+
+#. module: base_search_relevant
+#: model:ir.model.fields,help:base_search_relevant.field_search_relevant_config__layout_fields
+msgid "Indexed fields in weight-label order (A, B, …) for the current layout."
+msgstr ""
+
+#. module: base_search_relevant
+#: model:ir.model.fields,field_description:base_search_relevant.field_search_relevant_config__document_count
+msgid "Indexed records"
+msgstr ""
+
+#. module: base_search_relevant
+#: model:ir.model.fields.selection,name:base_search_relevant.selection__search_relevant_config__state__indexing
+msgid "Indexing"
+msgstr ""
+
+#. module: base_search_relevant
+#: model:ir.model.fields,field_description:base_search_relevant.field_search_relevant_config__last_purge_at
+msgid "Last Purge At"
+msgstr ""
+
+#. module: base_search_relevant
+#: model:ir.model.fields,field_description:base_search_relevant.field_search_relevant_config__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: base_search_relevant
+#: model:ir.model.fields,field_description:base_search_relevant.field_search_relevant_config__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: base_search_relevant
+#: model:ir.model.fields,field_description:base_search_relevant.field_search_relevant_config__sync_watermark
+msgid "Last freshness pass"
+msgstr ""
+
+#. module: base_search_relevant
+#: model:ir.model.fields,field_description:base_search_relevant.field_search_relevant_config__layout
+#: model:ir.model.fields,field_description:base_search_relevant.field_search_relevant_document__layout
+msgid "Layout"
+msgstr ""
+
+#. module: base_search_relevant
+#: model:ir.model.fields,field_description:base_search_relevant.field_search_relevant_config__layout_fields
+msgid "Layout Fields"
+msgstr ""
+
+#. module: base_search_relevant
+#: model:ir.actions.server,name:base_search_relevant.ir_cron_search_relevant_index_ir_actions_server
+msgid "Maintain the relevance search index"
+msgstr ""
+
+#. module: base_search_relevant
+#: model:ir.model,name:base_search_relevant.model_mail_message
+msgid "Message"
+msgstr ""
+
+#. module: base_search_relevant
+#: model:ir.model.fields,field_description:base_search_relevant.field_search_relevant_config__model_id
+msgid "Model"
+msgstr ""
+
+#. module: base_search_relevant
+#. odoo-python
+#: code:addons/base_search_relevant/models/search_relevant_config.py:0
+msgid "Model %s is not loaded in this database."
+msgstr ""
+
+#. module: base_search_relevant
+#: model:ir.model.fields,field_description:base_search_relevant.field_search_relevant_config__model
+msgid "Model Name"
+msgstr ""
+
+#. module: base_search_relevant
+#: model:ir.model.fields,field_description:base_search_relevant.field_search_relevant_config__normalization
+msgid "Normalization"
+msgstr ""
+
+#. module: base_search_relevant
+#: model:ir.model.fields,help:base_search_relevant.field_search_relevant_config__chatter_models
+msgid ""
+"Only for the chatter: the documents that have messages, kept current by the "
+"cron. A message is searched through its document, so whoever may read the "
+"document finds it."
+msgstr ""
+
+#. module: base_search_relevant
+#: model:ir.model.fields,help:base_search_relevant.field_search_relevant_config__domain
+msgid ""
+"Optional Odoo domain that limits which records are indexed. Empty indexes "
+"every record of the model. Example, to index only the chatter messages of "
+"tasks: [('message_type', '=', 'comment'), ('model', '=', 'project.task')]"
+msgstr ""
+
+#. module: base_search_relevant
+#: model_terms:ir.actions.act_window,help:base_search_relevant.action_search_relevant_config
+msgid ""
+"Pick a model and the text fields to search. The index is built in\n"
+"                the background; until it finishes, the most recent records are searchable first."
+msgstr ""
+
+#. module: base_search_relevant
+#: model:ir.model.fields,field_description:base_search_relevant.field_search_relevant_config__backfill_progress
+msgid "Progress"
+msgstr ""
+
+#. module: base_search_relevant
+#: model_terms:ir.ui.view,arch_db:base_search_relevant.view_search_relevant_config_form
+msgid "Re-index"
+msgstr ""
+
+#. module: base_search_relevant
+#: model:ir.model.fields.selection,name:base_search_relevant.selection__search_relevant_config__state__ready
+msgid "Ready"
+msgstr ""
+
+#. module: base_search_relevant
+#: model_terms:ir.ui.view,arch_db:base_search_relevant.view_search_relevant_config_form
+msgid ""
+"Rebuild the index of this model in the background? Search keeps working with"
+" the current index meanwhile."
+msgstr ""
+
+#. module: base_search_relevant
+#: model:ir.model.fields,field_description:base_search_relevant.field_search_relevant_config__append_only
+msgid "Records are never edited"
+msgstr ""
+
+#. module: base_search_relevant
+#: model:ir.model.fields,help:base_search_relevant.field_search_relevant_config__backfill_cursor
+msgid ""
+"Records with an id below this one are not indexed yet. Zero means the "
+"backfill is done."
+msgstr ""
+
+#. module: base_search_relevant
+#: model:ir.actions.act_window,name:base_search_relevant.action_search_relevant_config
+#: model:ir.model,name:base_search_relevant.model_search_relevant
+#: model:ir.ui.menu,name:base_search_relevant.menu_search_relevant_config
+#: model_terms:ir.ui.view,arch_db:base_search_relevant.view_search_relevant_config_form
+#: model_terms:ir.ui.view,arch_db:base_search_relevant.view_search_relevant_config_list
+msgid "Relevance Search"
+msgstr ""
+
+#. module: base_search_relevant
+#: model:ir.model,name:base_search_relevant.model_search_relevant_document
+msgid "Relevance Search Index Entry"
+msgstr ""
+
+#. module: base_search_relevant
+#: model:ir.model,name:base_search_relevant.model_search_relevant_config
+msgid "Relevance Search: Enabled Model"
+msgstr ""
+
+#. module: base_search_relevant
+#: model:ir.model.fields,field_description:base_search_relevant.field_search_relevant_document__res_id
+msgid "Res"
+msgstr ""
+
+#. module: base_search_relevant
+#: model_terms:ir.ui.view,arch_db:base_search_relevant.tuqui_res_config_settings_view_form
+msgid "Search index"
+msgstr ""
+
+#. module: base_search_relevant
+#: model:ir.model.fields,field_description:base_search_relevant.field_search_relevant_document__source_write_date
+msgid "Source Write Date"
+msgstr ""
+
+#. module: base_search_relevant
+#: model:ir.model.fields,field_description:base_search_relevant.field_search_relevant_config__state
+msgid "State"
+msgstr ""
+
+#. module: base_search_relevant
+#: model:ir.model.fields,field_description:base_search_relevant.field_search_relevant_config__sync_cursor
+msgid "Sync Cursor"
+msgstr ""
+
+#. module: base_search_relevant
+#: model:ir.model.fields,field_description:base_search_relevant.field_search_relevant_config__sync_reached
+msgid "Sync Reached"
+msgstr ""
+
+#. module: base_search_relevant
+#: model:ir.model.fields,field_description:base_search_relevant.field_search_relevant_config__sync_reached_at
+msgid "Sync Reached At"
+msgstr ""
+
+#. module: base_search_relevant
+#. odoo-python
+#: code:addons/base_search_relevant/models/search_relevant_config.py:0
+msgid "The domain is not valid: %s"
+msgstr ""
+
+#. module: base_search_relevant
+#. odoo-python
+#: code:addons/base_search_relevant/models/search_relevant_config.py:0
+msgid "The domain must be a list, like [('field', '=', value)]."
+msgstr ""
+
+#. module: base_search_relevant
+#: model:ir.model.fields,help:base_search_relevant.field_search_relevant_config__sync_reached
+msgid ""
+"The highest id a pass had walked to at sync_reached_at. It becomes "
+"sync_cursor once SYNC_ID_MARGIN has passed, so a transaction that commits "
+"late still falls above the cursor."
+msgstr ""
+
+#. module: base_search_relevant
+#. odoo-python
+#: code:addons/base_search_relevant/models/search_relevant_config.py:0
+msgid ""
+"The model of an enabled search cannot be changed. Create a new one instead."
+msgstr ""
+
+#. module: base_search_relevant
+#: model_terms:ir.ui.view,arch_db:base_search_relevant.view_search_relevant_config_form
+msgid ""
+"The text of these fields is searched, and the records ranked by relevance.\n"
+"                        A domain, if you set one, narrows what is indexed to part of the model.\n"
+"                        Results always follow each user's own permissions: the index decides the\n"
+"                        order, never who sees what. Indexing runs in the background, newest records\n"
+"                        first, without locking the model's table."
+msgstr ""
+
+#. module: base_search_relevant
+#: model:ir.model.constraint,message:base_search_relevant.constraint_search_relevant_config_model_unique
+msgid "This model is already enabled for search (it may be archived)."
+msgstr ""
+
+#. module: base_search_relevant
+#: model:ir.model,name:base_search_relevant.model_tuqui_health
+msgid "Tuqui Health Report"
+msgstr ""
+
+#. module: base_search_relevant
+#: model:ir.model,name:base_search_relevant.model_tuqui_search
+msgid "Tuqui Relevance Search"
+msgstr ""
+
+#. module: base_search_relevant
+#: model:ir.model.fields,help:base_search_relevant.field_search_relevant_config__field_ids
+msgid ""
+"Up to four text fields whose content is searched. Changing them re-indexes "
+"the model in the background."
+msgstr ""
+
+#. module: base_search_relevant
+#: model:ir.model.fields,help:base_search_relevant.field_search_relevant_config__backfill_reached
+msgid ""
+"While indexing: records created on or after this date are already indexed."
+msgstr ""
+
+#. module: base_search_relevant
+#. odoo-python
+#: code:addons/base_search_relevant/models/search_relevant.py:0
+msgid "search_relevant: 'domain' must be a list."
+msgstr ""
+
+#. module: base_search_relevant
+#. odoo-python
+#: code:addons/base_search_relevant/models/search_relevant.py:0
+msgid "search_relevant: 'limit' must be an integer."
+msgstr ""
+
+#. module: base_search_relevant
+#. odoo-python
+#: code:addons/base_search_relevant/models/search_relevant.py:0
+msgid "search_relevant: 'model' must be a model name."
+msgstr ""
+
+#. module: base_search_relevant
+#. odoo-python
+#: code:addons/base_search_relevant/models/search_relevant.py:0
+msgid "search_relevant: 'query' must be a string."
+msgstr ""
+
+#. module: base_search_relevant
+#: model:ir.model.fields,help:base_search_relevant.field_search_relevant_document__source_write_date
+msgid ""
+"write_date of the source record when it was indexed. The cron compares it to"
+" skip unchanged records."
+msgstr ""

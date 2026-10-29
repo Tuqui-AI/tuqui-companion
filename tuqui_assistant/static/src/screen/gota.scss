@@ -1,0 +1,60 @@
+/* The drop: Odoo's tour pointer in Tuqui's green, with Tuqui's face on it.
+ *
+ * Tinted through the variables the pointer itself exposes, so its shape, bounce and
+ * balloon stay Odoo's. The face says who put the mark on someone's screen: closed,
+ * only the two dots fit at 28 px; open, the whole face, curve included (drawn
+ * thicker than in the logo, or it disappears at this size). The face sits on the
+ * root, not on the tip: the tip is rotated 45 degrees.
+ */
+.o_tour_pointer.o_tuqui_gota {
+    --TourPointer__color: #344e41;
+    --TourPointer__color-accent: #3f5e4e;
+    --TourPointer__text-color: #ffffff;
+
+    .o_tour_pointer_content {
+        background-color: var(--TourPointer__color);
+        color: var(--TourPointer__text-color);
+    }
+
+    &.o_open {
+        border-color: var(--TourPointer__color);
+        background-color: var(--TourPointer__color);
+
+        .o_tour_pointer_tip {
+            background: var(--TourPointer__color);
+            border-color: var(--TourPointer__color);
+        }
+    }
+
+    &:not(.o_open)::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 72%;
+        width: 58%;
+        height: 58%;
+        transform: translate(-50%, -50%);
+        pointer-events: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='120 320 528 110'%3E%3Ccircle cx='205' cy='375' r='62' fill='%23fff'/%3E%3Ccircle cx='564' cy='375' r='62' fill='%23fff'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+    }
+
+    &.o_open .o_tour_pointer_content {
+        display: flex;
+        align-items: center;
+        gap: 0.55rem;
+
+        &::before {
+            content: "";
+            flex: none;
+            width: 1.45rem;
+            height: 1.45rem;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='140 300 490 175'%3E%3Ccircle cx='205' cy='375' r='50' fill='%23fff'/%3E%3Ccircle cx='564' cy='375' r='50' fill='%23fff'/%3E%3Cpath d='M 230 399 C 343 458, 446 458, 538 399' stroke='%23fff' stroke-width='33' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+        }
+    }
+}

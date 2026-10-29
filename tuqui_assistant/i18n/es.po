@@ -1,0 +1,664 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* tuqui_assistant
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-29 14:56+0000\n"
+"PO-Revision-Date: 2026-10-29 14:56+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: tuqui_assistant
+#. odoo-javascript
+#: code:addons/tuqui_assistant/static/src/services/tuqui_assistant_service.js:0
+msgid "%(field)s: %(added)s of %(asked)s new lines added."
+msgstr "%(field)s: se agregaron %(added)s de %(asked)s líneas nuevas."
+
+#. module: tuqui_assistant
+#. odoo-javascript
+#: code:addons/tuqui_assistant/static/src/panel/panel.xml:0
+msgid ", or ask an admin to add"
+msgstr ", o pida a un administrador que agregue"
+
+#. module: tuqui_assistant
+#. odoo-javascript
+#: code:addons/tuqui_assistant/static/src/panel/panel.xml:0
+msgid ""
+". The browser may be blocking the panel because that domain is not enabled "
+"yet, or Tuqui took longer than expected."
+msgstr ""
+". Puede ser que el navegador esté bloqueando el panel porque ese dominio "
+"todavía no está habilitado, o que Tuqui haya tardado más de lo esperado."
+
+#. module: tuqui_assistant
+#. odoo-javascript
+#: code:addons/tuqui_assistant/static/src/panel/panel.xml:0
+msgid "Ask an admin to add"
+msgstr "Pida a un administrador que agregue"
+
+#. module: tuqui_assistant
+#. odoo-javascript
+#: code:addons/tuqui_assistant/static/src/services/tuqui_assistant_service.js:0
+msgid "Cannot navigate: missing Odoo model to open."
+msgstr "No se pudo navegar: falta el modelo de Odoo a abrir."
+
+#. module: tuqui_assistant
+#. odoo-javascript
+#: code:addons/tuqui_assistant/static/src/services/tuqui_assistant_service.js:0
+msgid "Cannot navigate: missing the screen to open."
+msgstr "No se pudo navegar: falta la pantalla a abrir."
+
+#. module: tuqui_assistant
+#. odoo-javascript
+#: code:addons/tuqui_assistant/static/src/services/tuqui_assistant_service.js:0
+msgid "Cannot open the record: missing its id."
+msgstr "No se pudo abrir el registro: falta su id."
+
+#. module: tuqui_assistant
+#. odoo-javascript
+#: code:addons/tuqui_assistant/static/src/services/tuqui_assistant_service.js:0
+msgid "Changes applied to the form (unsaved). Review and Save or Discard."
+msgstr ""
+"Cambios aplicados al formulario (sin guardar). Revise y guarde o descarte."
+
+#. module: tuqui_assistant
+#. odoo-javascript
+#: code:addons/tuqui_assistant/static/src/services/tuqui_assistant_service.js:0
+msgid ""
+"Changes applied, but could not add line(s) for: %s. Check the form — a "
+"required field may be missing (e.g. the product). Do not assume the line was"
+" added."
+msgstr ""
+"Se aplicaron los cambios, pero no se pudo agregar la(s) línea(s) en: %s. "
+"Revise el formulario: puede que falte un campo obligatorio (por ejemplo, el "
+"producto). No dé por hecho que la línea se agregó."
+
+#. module: tuqui_assistant
+#: model:ir.model.fields,field_description:tuqui_assistant.field_tuqui_assistant_sso_nonce__client_id
+msgid "Client"
+msgstr "Cliente"
+
+#. module: tuqui_assistant
+#. odoo-javascript
+#: code:addons/tuqui_assistant/static/src/panel/panel.js:0
+msgid "Close"
+msgstr "Cerrar"
+
+#. module: tuqui_assistant
+#: model:ir.model.fields,help:tuqui_assistant.field_tuqui_assistant_sso_nonce__client_id
+msgid ""
+"Companion OAuth client_id this nonce is bound to (anti cross-workspace "
+"replay)."
+msgstr ""
+"client_id de OAuth del companion al que está atado este nonce (evita que se "
+"reuse en otro espacio de trabajo)."
+
+#. module: tuqui_assistant
+#. odoo-javascript
+#: code:addons/tuqui_assistant/static/src/panel/panel.xml:0
+msgid "Connect Tuqui (companion) from Settings to use the assistant here."
+msgstr ""
+"Conecte Tuqui (companion) desde Ajustes para usar el asistente desde aquí."
+
+#. module: tuqui_assistant
+#. odoo-javascript
+#: code:addons/tuqui_assistant/static/src/panel/panel.xml:0
+msgid ""
+"Connecting it as a test database. Open the assistant again in a moment."
+msgstr ""
+"La estamos conectando como base de prueba. Vuelva a abrir el asistente en un"
+" momento."
+
+#. module: tuqui_assistant
+#. odoo-javascript
+#: code:addons/tuqui_assistant/static/src/panel/panel.xml:0
+msgid "Connecting it as a test database…"
+msgstr "La estamos conectando como base de prueba…"
+
+#. module: tuqui_assistant
+#: model:ir.model.fields,field_description:tuqui_assistant.field_tuqui_assistant_sso_nonce__consumed_at
+msgid "Consumed At"
+msgstr "Usado el"
+
+#. module: tuqui_assistant
+#. odoo-javascript
+#: code:addons/tuqui_assistant/static/src/panel/panel.js:0
+msgid "Contract"
+msgstr "Contraer"
+
+#. module: tuqui_assistant
+#. odoo-javascript
+#: code:addons/tuqui_assistant/static/src/panel/panel.js:0
+msgid "Conversations"
+msgstr "Conversaciones"
+
+#. module: tuqui_assistant
+#. odoo-javascript
+#: code:addons/tuqui_assistant/static/src/services/tuqui_assistant_service.js:0
+msgid "Could not apply changes: %s"
+msgstr "No se pudieron aplicar los cambios: %s"
+
+#. module: tuqui_assistant
+#. odoo-javascript
+#: code:addons/tuqui_assistant/static/src/panel/panel.xml:0
+msgid ""
+"Could not connect it as a test database. Try again later, or from Settings."
+msgstr ""
+"No se pudo conectar como base de prueba. Inténtelo de nuevo más tarde, o "
+"desde Ajustes."
+
+#. module: tuqui_assistant
+#. odoo-javascript
+#: code:addons/tuqui_assistant/static/src/services/tuqui_assistant_service.js:0
+msgid "Could not open that menu in Odoo: %s"
+msgstr "No se pudo abrir ese menú en Odoo: %s"
+
+#. module: tuqui_assistant
+#. odoo-javascript
+#: code:addons/tuqui_assistant/static/src/services/tuqui_assistant_service.js:0
+msgid "Could not open that screen in Odoo: %s"
+msgstr "No se pudo abrir esa pantalla en Odoo: %s"
+
+#. module: tuqui_assistant
+#. odoo-javascript
+#: code:addons/tuqui_assistant/static/src/services/tuqui_assistant_service.js:0
+msgid "Could not open the chatter composer: %s"
+msgstr "No se pudo abrir el compositor del chatter: %s"
+
+#. module: tuqui_assistant
+#. odoo-javascript
+#: code:addons/tuqui_assistant/static/src/services/tuqui_assistant_service.js:0
+msgid "Could not open the new form in Odoo: %s"
+msgstr "No se pudo abrir el formulario nuevo en Odoo: %s"
+
+#. module: tuqui_assistant
+#. odoo-javascript
+#: code:addons/tuqui_assistant/static/src/services/tuqui_assistant_service.js:0
+msgid "Could not open the record in Odoo: %s"
+msgstr "No se pudo abrir el registro en Odoo: %s"
+
+#. module: tuqui_assistant
+#. odoo-javascript
+#: code:addons/tuqui_assistant/static/src/services/tuqui_assistant_service.js:0
+msgid "Could not open the view in Odoo: %s"
+msgstr "No se pudo abrir la vista en Odoo: %s"
+
+#. module: tuqui_assistant
+#. odoo-javascript
+#: code:addons/tuqui_assistant/static/src/services/tuqui_assistant_service.js:0
+msgid ""
+"Could not read the date for these line fields: %s. The lines go in without "
+"them."
+msgstr ""
+"No se pudo leer la fecha de estos campos de línea: %s. Las líneas se agregan"
+" sin ellos."
+
+#. module: tuqui_assistant
+#. odoo-javascript
+#: code:addons/tuqui_assistant/static/src/services/tuqui_assistant_service.js:0
+msgid ""
+"Could not read the date for: %s. Ask again with a date like 2026-09-30."
+msgstr ""
+"No se pudo leer la fecha de: %s. Pídalo de nuevo con una fecha como "
+"2026-09-30."
+
+#. module: tuqui_assistant
+#. odoo-javascript
+#: code:addons/tuqui_assistant/static/src/services/tuqui_assistant_service.js:0
+msgid ""
+"Could not replace the selection: nothing is left of the proposal once "
+"cleaned."
+msgstr ""
+"No se pudo reemplazar la selección: no queda nada de la propuesta después de"
+" limpiarla."
+
+#. module: tuqui_assistant
+#. odoo-javascript
+#: code:addons/tuqui_assistant/static/src/services/tuqui_assistant_service.js:0
+msgid "Could not replace the selection: the field %s is not open for editing."
+msgstr ""
+"No se pudo reemplazar la selección: el campo %s no está abierto para editar."
+
+#. module: tuqui_assistant
+#. odoo-javascript
+#: code:addons/tuqui_assistant/static/src/services/tuqui_assistant_service.js:0
+msgid "Could not save: %s"
+msgstr "No se pudo guardar: %s"
+
+#. module: tuqui_assistant
+#: model:ir.model.fields,field_description:tuqui_assistant.field_tuqui_assistant_sso_nonce__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: tuqui_assistant
+#: model:ir.model.fields,field_description:tuqui_assistant.field_tuqui_assistant_sso_nonce__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: tuqui_assistant
+#. odoo-javascript
+#: code:addons/tuqui_assistant/static/src/services/tuqui_assistant_service.js:0
+msgid ""
+"Data changed in Odoo while this dialog is open: the form below reloads when "
+"you close it."
+msgstr ""
+"Los datos cambiaron en Odoo mientras este diálogo está abierto: el "
+"formulario de abajo se recarga cuando lo cierres."
+
+#. module: tuqui_assistant
+#. odoo-javascript
+#: code:addons/tuqui_assistant/static/src/services/tuqui_assistant_service.js:0
+msgid ""
+"Data changed in Odoo, but the form has unsaved changes so it was not "
+"reloaded. Save or discard to see the new values."
+msgstr ""
+"Los datos cambiaron en Odoo, pero el formulario tiene cambios sin guardar y "
+"no se recargó. Guarde o descarte para ver los valores nuevos."
+
+#. module: tuqui_assistant
+#: model:ir.model.fields,field_description:tuqui_assistant.field_tuqui_assistant_sso_nonce__display_name
+msgid "Display Name"
+msgstr "Nombre en pantalla"
+
+#. module: tuqui_assistant
+#. odoo-javascript
+#: code:addons/tuqui_assistant/static/src/panel/panel.js:0
+msgid "Expand"
+msgstr "Expandir"
+
+#. module: tuqui_assistant
+#: model:ir.model.fields,field_description:tuqui_assistant.field_tuqui_assistant_sso_nonce__expires_at
+msgid "Expires At"
+msgstr "Vence el"
+
+#. module: tuqui_assistant
+#. odoo-javascript
+#: code:addons/tuqui_assistant/static/src/services/tuqui_assistant_service.js:0
+msgid "Form saved."
+msgstr "Formulario guardado."
+
+#. module: tuqui_assistant
+#. odoo-javascript
+#: code:addons/tuqui_assistant/static/src/systray/systray.js:0
+msgid "Hide Tuqui"
+msgstr "Ocultar Tuqui"
+
+#. module: tuqui_assistant
+#. odoo-javascript
+#: code:addons/tuqui_assistant/static/src/panel/panel.xml:0
+msgid "How to do it"
+msgstr "Cómo hacerlo"
+
+#. module: tuqui_assistant
+#: model:ir.model.fields,field_description:tuqui_assistant.field_tuqui_assistant_sso_nonce__id
+msgid "ID"
+msgstr "ID"
+
+#. module: tuqui_assistant
+#: model:ir.model.fields,field_description:tuqui_assistant.field_tuqui_assistant_sso_nonce__write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: tuqui_assistant
+#: model:ir.model.fields,field_description:tuqui_assistant.field_tuqui_assistant_sso_nonce__write_date
+msgid "Last Updated on"
+msgstr "Última actualización el"
+
+#. module: tuqui_assistant
+#. odoo-javascript
+#: code:addons/tuqui_assistant/static/src/services/tuqui_assistant_service.js:0
+msgid "Line saved into the form. Save the form to keep it."
+msgstr ""
+"Línea guardada en el formulario. Guarde el formulario para conservarla."
+
+#. module: tuqui_assistant
+#. odoo-javascript
+#: code:addons/tuqui_assistant/static/src/services/tuqui_assistant_service.js:0
+msgid "Log note"
+msgstr "Registrar una nota"
+
+#. module: tuqui_assistant
+#. odoo-javascript
+#: code:addons/tuqui_assistant/static/src/panel/panel.js:0
+msgid "Minimize"
+msgstr "Minimizar"
+
+#. module: tuqui_assistant
+#. odoo-javascript
+#: code:addons/tuqui_assistant/static/src/services/tuqui_assistant_service.js:0
+msgid "No field from the proposal can be applied to the open form."
+msgstr "Ningún campo de la propuesta se puede aplicar al formulario abierto."
+
+#. module: tuqui_assistant
+#: model:ir.model.fields,field_description:tuqui_assistant.field_tuqui_assistant_sso_nonce__nonce
+msgid "Nonce"
+msgstr "Nonce"
+
+#. module: tuqui_assistant
+#. odoo-javascript
+#: code:addons/tuqui_assistant/static/src/services/tuqui_assistant_service.js:0
+msgid ""
+"Not applied because you changed them after the proposal: %s. Ask again to "
+"work on the current value."
+msgstr ""
+"No se aplicó porque usted los cambió después de la propuesta: %s. Pídalo de "
+"nuevo para trabajar sobre el valor actual."
+
+#. module: tuqui_assistant
+#. odoo-javascript
+#: code:addons/tuqui_assistant/static/src/services/tuqui_assistant_service.js:0
+msgid ""
+"Not applied: %s changed while the assistant was editing it. Ask again to "
+"work on the current value."
+msgstr ""
+"No se aplicó: %s cambió mientras el asistente lo editaba. Pídalo de nuevo "
+"para trabajar sobre el valor actual."
+
+#. module: tuqui_assistant
+#. odoo-javascript
+#: code:addons/tuqui_assistant/static/src/services/tuqui_assistant_service.js:0
+msgid ""
+"Not applied: nothing is left of the proposal for %s once cleaned. Ask again."
+msgstr ""
+"No se aplicó: no queda nada de la propuesta para %s después de limpiarla. "
+"Pídalo de nuevo."
+
+#. module: tuqui_assistant
+#. odoo-javascript
+#: code:addons/tuqui_assistant/static/src/services/tuqui_assistant_service.js:0
+msgid ""
+"Not applied: the proposal was for another record. Go back to it and ask "
+"again."
+msgstr ""
+"No se aplicó: la propuesta era para otro registro. Vuelva a ese registro y "
+"pídalo de nuevo."
+
+#. module: tuqui_assistant
+#. odoo-javascript
+#: code:addons/tuqui_assistant/static/src/services/tuqui_assistant_service.js:0
+msgid "Not applied: the selected text changed. Select it again and ask again."
+msgstr ""
+"No se aplicó: el texto seleccionado cambió. Selecciónelo de nuevo y vuelva a"
+" pedirlo."
+
+#. module: tuqui_assistant
+#. odoo-javascript
+#: code:addons/tuqui_assistant/static/src/services/tuqui_assistant_service.js:0
+msgid ""
+"Not applied: the selection is too long to replace from the assistant. Select"
+" a smaller part."
+msgstr ""
+"No se aplicó: la selección es demasiado larga para reemplazarla desde el "
+"asistente. Seleccione una parte más pequeña."
+
+#. module: tuqui_assistant
+#. odoo-javascript
+#: code:addons/tuqui_assistant/static/src/services/tuqui_assistant_service.js:0
+msgid ""
+"Not opened: the message was for another record. Go back to it and ask again."
+msgstr ""
+"No se abrió: el mensaje era para otro registro. Vuelva a ese registro y "
+"pídalo de nuevo."
+
+#. module: tuqui_assistant
+#. odoo-javascript
+#: code:addons/tuqui_assistant/static/src/services/tuqui_assistant_service.js:0
+msgid "Nothing to save — the form has no pending changes."
+msgstr "No hay nada para guardar: el formulario no tiene cambios pendientes."
+
+#. module: tuqui_assistant
+#: model:ir.model.fields,field_description:tuqui_assistant.field_tuqui_assistant_sso_nonce__odoo_uid
+msgid "Odoo Uid"
+msgstr "Uid de Odoo"
+
+#. module: tuqui_assistant
+#. odoo-javascript
+#: code:addons/tuqui_assistant/static/src/panel/panel.xml:0
+msgid "Open Odoo from"
+msgstr "Entre por"
+
+#. module: tuqui_assistant
+#. odoo-javascript
+#: code:addons/tuqui_assistant/static/src/panel/panel.js:0
+#: code:addons/tuqui_assistant/static/src/systray/systray.js:0
+msgid "Open Tuqui"
+msgstr "Abrir Tuqui"
+
+#. module: tuqui_assistant
+#. odoo-javascript
+#: code:addons/tuqui_assistant/static/src/services/tuqui_assistant_service.js:0
+msgid "Open a form (1 record) to apply changes from here."
+msgstr "Abra un formulario (1 registro) para aplicar cambios desde aquí."
+
+#. module: tuqui_assistant
+#. odoo-javascript
+#: code:addons/tuqui_assistant/static/src/services/tuqui_assistant_service.js:0
+msgid "Open a form (1 record) to post to the chatter."
+msgstr "Abra un formulario (1 registro) para publicar en el chatter."
+
+#. module: tuqui_assistant
+#. odoo-javascript
+#: code:addons/tuqui_assistant/static/src/services/tuqui_assistant_service.js:0
+msgid "Open a form (1 record) to save it from here."
+msgstr "Abra un formulario (1 registro) para guardarlo desde aquí."
+
+#. module: tuqui_assistant
+#. odoo-javascript
+#: code:addons/tuqui_assistant/static/src/panel/panel.js:0
+msgid "Open in Tuqui"
+msgstr "Abrir en Tuqui"
+
+#. module: tuqui_assistant
+#. odoo-javascript
+#: code:addons/tuqui_assistant/static/src/panel/panel.xml:0
+msgid "Opening Tuqui…"
+msgstr "Abriendo Tuqui…"
+
+#. module: tuqui_assistant
+#. odoo-javascript
+#: code:addons/tuqui_assistant/static/src/services/tuqui_assistant_service.js:0
+msgid ""
+"Removed %s image(s) or resource(s) from another site: only images and files "
+"from this Odoo can be added."
+msgstr ""
+"Se quitaron %s imagen(es) o recurso(s) de otro sitio: solo se pueden agregar"
+" imágenes y archivos de este Odoo."
+
+#. module: tuqui_assistant
+#. odoo-javascript
+#: code:addons/tuqui_assistant/static/src/services/tuqui_assistant_service.js:0
+msgid "Selection replaced in the form (unsaved). Review and Save or Discard."
+msgstr ""
+"Selección reemplazada en el formulario (sin guardar). Revise y guarde o "
+"descarte."
+
+#. module: tuqui_assistant
+#. odoo-javascript
+#: code:addons/tuqui_assistant/static/src/services/tuqui_assistant_service.js:0
+msgid "Send message"
+msgstr "Enviar mensaje"
+
+#. module: tuqui_assistant
+#. odoo-javascript
+#: code:addons/tuqui_assistant/static/src/services/tuqui_assistant_service.js:0
+msgid "Skipped fields that cannot be edited in this form: %s"
+msgstr "Se ignoraron campos que no se pueden editar en este formulario: %s"
+
+#. module: tuqui_assistant
+#. odoo-javascript
+#: code:addons/tuqui_assistant/static/src/services/tuqui_assistant_service.js:0
+msgid "That is not a screen, so Tuqui did not open it."
+msgstr "Eso no es una pantalla, así que Tuqui no la abrió."
+
+#. module: tuqui_assistant
+#. odoo-javascript
+#: code:addons/tuqui_assistant/static/src/services/tuqui_assistant_service.js:0
+msgid "That menu is not available to you in this Odoo."
+msgstr "Ese menú no está disponible para usted en este Odoo."
+
+#. module: tuqui_assistant
+#. odoo-javascript
+#: code:addons/tuqui_assistant/static/src/services/tuqui_assistant_service.js:0
+msgid ""
+"The composer is open in the form. The person decides whether to post it."
+msgstr ""
+"El compositor está abierto en el formulario. La persona decide si lo "
+"publica."
+
+#. module: tuqui_assistant
+#. odoo-javascript
+#: code:addons/tuqui_assistant/static/src/services/tuqui_assistant_service.js:0
+msgid "The proposal must be an object { field: value }."
+msgstr "La propuesta debe ser un objeto { campo: valor }."
+
+#. module: tuqui_assistant
+#. odoo-javascript
+#: code:addons/tuqui_assistant/static/src/services/tuqui_assistant_service.js:0
+msgid "This Odoo cannot open that kind of screen, so it was not opened."
+msgstr "Este Odoo no puede abrir ese tipo de pantalla, así que no se abrió."
+
+#. module: tuqui_assistant
+#. odoo-javascript
+#: code:addons/tuqui_assistant/static/src/panel/panel.js:0
+msgid ""
+"This Odoo does not know how to apply this proposal (%s). Update the Tuqui "
+"Assistant module."
+msgstr ""
+"Este Odoo no sabe cómo aplicar esta propuesta (%s). Actualice el módulo "
+"Tuqui Assistant."
+
+#. module: tuqui_assistant
+#. odoo-javascript
+#: code:addons/tuqui_assistant/static/src/services/tuqui_assistant_service.js:0
+msgid "This Odoo has no %s view, so it was not opened."
+msgstr "Este Odoo no tiene vista %s, así que no se abrió."
+
+#. module: tuqui_assistant
+#. odoo-javascript
+#: code:addons/tuqui_assistant/static/src/panel/panel.xml:0
+msgid "This URL is not enabled for Tuqui"
+msgstr "Esta URL no está habilitada para Tuqui"
+
+#. module: tuqui_assistant
+#. odoo-javascript
+#: code:addons/tuqui_assistant/static/src/panel/panel.xml:0
+msgid "This database is a copy of one connected to Tuqui"
+msgstr "Esta base es una copia de una conectada a Tuqui"
+
+#. module: tuqui_assistant
+#. odoo-javascript
+#: code:addons/tuqui_assistant/static/src/panel/panel.xml:0
+msgid ""
+"Try reloading the page. If it keeps happening, tell whoever manages your "
+"Tuqui, with the domain above."
+msgstr ""
+"Intente recargar la página. Si sigue igual, avise a quien administra su "
+"Tuqui, con el dominio de arriba."
+
+#. module: tuqui_assistant
+#. odoo-javascript
+#: code:addons/tuqui_assistant/static/src/panel/panel.xml:0
+msgid ""
+"Try reloading the page. If it keeps happening, tell whoever manages your "
+"Tuqui."
+msgstr ""
+"Intente recargar la página. Si sigue igual, avise a quien administra su "
+"Tuqui."
+
+#. module: tuqui_assistant
+#. odoo-javascript
+#: code:addons/tuqui_assistant/static/src/panel/panel.xml:0
+#: code:addons/tuqui_assistant/static/src/systray/systray.xml:0
+msgid "Tuqui"
+msgstr "Tuqui"
+
+#. module: tuqui_assistant
+#: model:ir.model,name:tuqui_assistant.model_tuqui_assistant_sso_nonce
+msgid "Tuqui Assistant SSO Nonce"
+msgstr "Nonce SSO de Tuqui Assistant"
+
+#. module: tuqui_assistant
+#: model:ir.actions.server,name:tuqui_assistant.ir_cron_gc_sso_nonces_ir_actions_server
+msgid "Tuqui Assistant: GC SSO nonces"
+msgstr "Tuqui Assistant: limpiar nonces SSO"
+
+#. module: tuqui_assistant
+#. odoo-python
+#: code:addons/tuqui_assistant/models/tuqui_assistant_sso_nonce.py:0
+msgid "Tuqui SSO nonce must be unique."
+msgstr "El nonce SSO de Tuqui tiene que ser único."
+
+#. module: tuqui_assistant
+#. odoo-javascript
+#: code:addons/tuqui_assistant/static/src/panel/panel.xml:0
+msgid "Tuqui could not open"
+msgstr "Tuqui no pudo abrir"
+
+#. module: tuqui_assistant
+#. odoo-javascript
+#: code:addons/tuqui_assistant/static/src/panel/panel.xml:0
+msgid "Tuqui did not finish opening"
+msgstr "Tuqui no terminó de abrir"
+
+#. module: tuqui_assistant
+#. odoo-javascript
+#: code:addons/tuqui_assistant/static/src/panel/panel.xml:0
+msgid "Tuqui is not connected to this Odoo"
+msgstr "Tuqui no está conectado a este Odoo"
+
+#. module: tuqui_assistant
+#. odoo-python
+#: code:addons/tuqui_assistant/models/tuqui_assistant_sso_nonce.py:0
+msgid ""
+"Tuqui is not connected to this Odoo (companion). Please activate the "
+"connection first."
+msgstr ""
+"Tuqui no está conectado a este Odoo (companion). Active la conexión primero."
+
+#. module: tuqui_assistant
+#. odoo-javascript
+#: code:addons/tuqui_assistant/static/src/panel/panel.js:0
+msgid "Tuqui is not connected: cannot open the app."
+msgstr "Tuqui no está conectado: no se puede abrir la app."
+
+#. module: tuqui_assistant
+#. odoo-javascript
+#: code:addons/tuqui_assistant/static/src/services/tuqui_assistant_service.js:0
+msgid "What Tuqui marked is behind the open dialog: close it to see it."
+msgstr ""
+"Lo que marcó Tuqui está detrás del diálogo abierto: ciérrelo para verlo."
+
+#. module: tuqui_assistant
+#. odoo-javascript
+#: code:addons/tuqui_assistant/static/src/services/tuqui_assistant_service.js:0
+msgid "What Tuqui marked is no longer on this screen."
+msgstr "Lo que marcó Tuqui ya no está en esta pantalla."
+
+#. module: tuqui_assistant
+#. odoo-javascript
+#: code:addons/tuqui_assistant/static/src/panel/panel.xml:0
+msgid "You are on"
+msgstr "Estás entrando por"
+
+#. module: tuqui_assistant
+#. odoo-javascript
+#: code:addons/tuqui_assistant/static/src/panel/panel.xml:0
+msgid "in Settings → Tuqui."
+msgstr "en Ajustes → Tuqui."
+
+#. module: tuqui_assistant
+#: model:ir.model.fields,help:tuqui_assistant.field_tuqui_assistant_sso_nonce__odoo_uid
+msgid ""
+"res.users id the SSO token will be minted for (captured from env.uid at "
+"mint)."
+msgstr ""
+"id de res.users para el que se emite el token SSO (se toma de env.uid al "
+"emitirlo)."

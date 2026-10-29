@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <!--
+        The drop is Odoo's tour pointer, in green. `primary` makes a modified COPY,
+        so real Odoo tours keep their template untouched. Two changes:
+        1. No "Stop Tour" button: outside a tour it would disable the user's tours
+           and reload the page.
+        2. Its own class, for Tuqui's colour: the colour says WHO is pointing.
+    -->
+    <t t-name="tuqui_assistant.Gota" t-inherit="web_tour.TourPointer" t-inherit-mode="primary">
+        <xpath expr="//button[@t-on-click='onStopClicked']" position="replace" />
+        <!-- By t-ref, not by class: the pointer's class is built in t-attf-class,
+             which a hasclass() xpath does not see. -->
+        <xpath expr="//div[@t-ref='pointer']" position="attributes">
+            <attribute name="t-attf-class" add="o_tuqui_gota" separator=" " />
+        </xpath>
+    </t>
+</templates>
