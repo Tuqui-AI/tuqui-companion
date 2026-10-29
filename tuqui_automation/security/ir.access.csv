@@ -1,0 +1,5 @@
+id,name,model_id,group_id/id,operation,domain
+access_base_automation_tuqui_triggers,Automation rules: Tuqui triggers only,base.automation,tuqui_automation.group_tuqui_triggers,crud,"[('tuqui_agent_id', '!=', False)]"
+access_ir_model_tuqui_triggers,ir.model tuqui triggers,ir.model,tuqui_automation.group_tuqui_triggers,r,
+access_ir_model_fields_tuqui_triggers,ir.model.fields tuqui triggers,ir.model.fields,tuqui_automation.group_tuqui_triggers,r,
+access_ir_model_fields_selection_tuqui_triggers,ir.model.fields.selection tuqui triggers,ir.model.fields.selection,tuqui_automation.group_tuqui_triggers,r,

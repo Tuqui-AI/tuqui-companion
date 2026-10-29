@@ -1,0 +1,656 @@
+// Width of the expanded panel. It lives on :root (not under
+// html.o-tuqui-expanded) because three rules consume it and one of them applies
+// when that class is NOT set: hiding the card from the expanded state keeps its
+// class but closes the gutter. One place, so they cannot drift apart.
+//
+// The width is what is LEFT OVER, not a fixed fraction of the viewport. Odoo's
+// control panel — breadcrumb, stat buttons, pager — starts overflowing once the
+// content keeps less than ~1086px: measured on a 1440px viewport, taking 400px
+// away overflows it by 46px and every extra pixel taken adds one of overflow.
+// The old `2/7 * 100vw` took 411px there, so it always shipped that overflow.
+// The floor keeps the panel usable on narrow screens (it then wins height, not
+// width). The ceiling is 768px because past that the panel stops gaining
+// conversation: the thread caps its reading line at 832px, so on a 2560px
+// screen a 1024px panel drew a 720px composer floating in 152px of air on each
+// side, and took 256px from Odoo to do it. At 768 the composer fills the panel
+// on every screen.
+//
+// One curve for the whole float → dock morph, so the card reads as a single
+// object changing size instead of several properties racing each other.
+$o-tuqui-ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+// Odoo's chat window height, `Min(95vh, 633px)`, with one more bound: never
+// above Odoo's 46px navbar ($o-navbar-height in 18, 19 and 20) plus 8px of air.
+// Odoo's own window does climb over it, but in the corner; ours sits further
+// left, right over the systray, and on a ~625px viewport it covered the very
+// icons that open it and Odoo's AI.
+$o-tuqui-height: Min(95vh, 633px, calc(100vh - 62px));
+
+:root {
+    --o-tuqui-host-min-width: 1086px;
+    --o-tuqui-expanded-width: Max(
+        354px,
+        Min(40vw, 768px, calc(100vw - var(--o-tuqui-host-min-width)))
+    );
+}
+
+// Paleta Salvia (Tuqui brand v4). Local al módulo para no depender de tokens
+// externos. Ver brand/branding.md.
+.o-tuqui-panel {
+    --tuqui-salvia-800: #1f3327;
+    --tuqui-salvia-700: #344e41;
+    --tuqui-salvia-600: #3f5e4e;
+    --tuqui-salvia-300: #b8c9bf;
+    --tuqui-salvia-100: #e5ede8;
+    --tuqui-mostaza: #fea912;
+    --tuqui-ink: #0a0a0a;
+    --tuqui-paper: #f7f6f3;
+}
+
+// --- Systray ---
+// El botón usa `o_nav_entry` (clase estándar de la navbar) para alinearse
+// verticalmente igual que los demás íconos del systray (Discuss, AI, etc.).
+.o-tuqui-systray-icon {
+    height: 20px;
+    width: 20px;
+}
+
+// El ícono es un interruptor: tiene que decir en qué estado está.
+// `aria-pressed` lo dice para un lector de pantalla; esto es lo mismo para el ojo — un fondo tenue y el logo a plena
+// opacidad mientras la tarjeta está a la vista. Sin esta regla la clase existía
+// y no pintaba nada.
+.o-tuqui-systray-btn {
+    .o-tuqui-systray-icon {
+        opacity: 0.75;
+        transition: opacity 0.15s ease;
+    }
+    &:hover .o-tuqui-systray-icon {
+        opacity: 1;
+    }
+    &.o-active {
+        background-color: rgba(255, 255, 255, 0.14);
+        border-radius: 0.4rem;
+        .o-tuqui-systray-icon {
+            opacity: 1;
+        }
+    }
+}
+
+// --- Panel ---
+// A card that FLOATS: detached from both edges, rounded on all four corners and
+// lifted by a layered shadow. It used to sit flush on the floor with square
+// bottom corners and a shadow pointing upwards, which drew a drawer built into
+// the browser chrome instead of an object resting on top of Odoo — and it
+// clashed with the chat inside it, which is all pills and air.
+// Its bottom edge lines up with Odoo's chat windows, which are `fixed-bottom`
+// with `mb-2` (8px) on desktop in 18, 19 and 20: 18px up, it read as misaligned
+// next to one.
+// z-index $zindex-sticky (=1020, a Bootstrap var via `web`) stays BELOW modals
+// and popovers (≥1055) so it never occludes them; with a dialog open it rises
+// above it (see the `:has(.o_dialog)` rule below).
+.o-tuqui-panel {
+    position: fixed;
+    // `top` y `height` llevan valor explícito en los DOS estados a propósito:
+    // `top: auto → 0` y `height: <length> → auto` no son interpolables, así que
+    // esas dos transiciones eran inertes y el borde de arriba saltaba en un
+    // cuadro mientras el ancho viajaba 340 ms. Se leía como tirón, no como un
+    // objeto que cambia de tamaño. Con el `top` calculado desde la altura, las
+    // cuatro propiedades viajan juntas.
+    // The height is Odoo's chat window's (see $o-tuqui-height), so both tops
+    // line up too down to a ~695px viewport. With `Min(70vh, 720px)` a laptop
+    // with a taskbar (~650px of viewport) got a 455px card beside a 618px Odoo
+    // window, and a tall screen a 720px one beside 633px.
+    top: calc(100vh - 8px - #{$o-tuqui-height});
+    bottom: 8px;
+    // Slide left by the width of Odoo's chat cluster (.o-mail-ChatHub) when it is
+    // present, so we sit beside it instead of on top. Var is set from panel.js;
+    // defaults to 0 → flush right when no Odoo chat is open.
+    right: calc(18px + var(--o-tuqui-chat-offset, 0px));
+    transition: right 0.15s ease, bottom 0.34s $o-tuqui-ease,
+        top 0.34s $o-tuqui-ease, width 0.34s $o-tuqui-ease,
+        height 0.34s $o-tuqui-ease, border-radius 0.34s ease, box-shadow 0.34s ease,
+        opacity 0.16s ease, transform 0.16s $o-tuqui-ease, visibility 0s;
+    width: 392px;
+    max-width: 100vw;
+    height: $o-tuqui-height;
+    background: var(--o-view-background-color, #fff);
+    border: 0;
+    border-radius: 1rem;
+    // Three layers: contact, lift and ambient. One flat shadow reads as a sticker.
+    box-shadow: 0 1px 2px rgba(23, 33, 27, 0.06), 0 10px 28px rgba(23, 33, 27, 0.13),
+        0 28px 60px rgba(23, 33, 27, 0.09);
+    overflow: hidden;
+    z-index: $zindex-sticky;
+    // It grows out of the corner it lives in and shrinks back into it.
+    transform-origin: bottom right;
+    opacity: 1;
+    transform: scale(1);
+}
+
+// Hidden, but NOT unmounted: the iframe has to stay alive (a remount would spend
+// a second single-use SSO nonce → 401), so this cannot be `display: none` — and
+// `display` would not animate anyway. `visibility` is what takes it out of the
+// tab order and off the hit-testing, delayed by the length of the fade so the
+// card is still there while it plays; coming back it flips immediately.
+.o-tuqui-panel.o-tuqui-away {
+    opacity: 0;
+    transform: scale(0.96);
+    pointer-events: none;
+    visibility: hidden;
+    transition: opacity 0.14s ease, transform 0.14s $o-tuqui-ease, visibility 0s linear 0.14s;
+}
+
+// The minimized card: a bubble shaped like Odoo's (42px, `$o-mail-ChatBubble-size`)
+// and centered in the same column (25px from the edge plus half of the 14px
+// between a 56px column and a 42px bubble). It sits in the column's first slot,
+// or right on top of Odoo's bubbles when there are some (`--o-tuqui-launcher-lift`,
+// measured in panel.js), 4px apart like theirs (`gap-1`).
+.o-tuqui-launcher {
+    position: fixed;
+    right: 32px;
+    bottom: Max(10px, calc(var(--o-tuqui-launcher-lift, 0px) + 4px));
+    width: 42px;
+    height: 42px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    overflow: hidden;
+    // The circle takes the logo's own fill (#3f5e4e in tuqui-smile.svg) and the
+    // logo is drawn larger than the bubble, so its rounded-square corners fall
+    // outside and the face fills the circle: drawn at the bubble's size the face
+    // was ~60% of it and read small; with the corners clipped it looked cut.
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #3f5e4e;
+    box-shadow: $box-shadow-sm;
+    z-index: $zindex-sticky;
+    transition: bottom 0.15s ease, transform 0.15s $o-tuqui-ease;
+    animation: o-tuqui-launcher-in 0.16s $o-tuqui-ease;
+
+    img {
+        flex: none;
+        width: 118%;
+        height: 118%;
+        display: block;
+    }
+    &:hover,
+    &:focus-visible {
+        transform: scale(1.06);
+    }
+}
+
+@keyframes o-tuqui-launcher-in {
+    from {
+        opacity: 0;
+        transform: scale(0.6);
+    }
+}
+
+// Expanded: the same card docks against the right edge, full bleed from top to
+// bottom. It does not cover Odoo's top bar — the body padding below shrinks the
+// whole client, navbar included, so Odoo ends before the panel starts. Only the
+// side facing the content keeps its radius: square against the window edge,
+// rounded against Odoo, which is what makes it read as part of the layout
+// instead of a wall. Not on mobile (the card already fills the viewport).
+@media (min-width: 576px) {
+    .o-tuqui-panel.o-tuqui-expanded {
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: var(--o-tuqui-expanded-width);
+        height: calc(100vh - 0px);
+        border-radius: 1.125rem 0 0 1.125rem;
+        border: 0;
+        box-shadow: -2px 0 22px rgba(23, 33, 27, 0.1);
+    }
+
+    // Split screen: en Odoo 17+ body mismo tiene clase o_web_client, por lo
+    // que un selector descendant (.o_web_client dentro de body) nunca matchea.
+    // La clase va en <html> (documentElement) y el padding-right en body
+    // reduce el área de contenido a 4/7 del viewport (box-sizing: border-box
+    // hace que el padding sea parte del ancho declarado). Todo el contenido de
+    // Odoo — navbar incluida — reflow naturalmente dentro de ese 4/7.
+    html.o-tuqui-expanded {
+        overflow-x: hidden;
+    }
+    html.o-tuqui-expanded body {
+        padding-right: var(--o-tuqui-expanded-width) !important;
+        box-sizing: border-box !important;
+        transition: padding-right 0.34s $o-tuqui-ease;
+    }
+
+    // Las notificaciones de Odoo (`.o_notification_manager`) son `position:
+    // fixed` anclado arriba a la derecha. Fixed se posiciona contra el VIEWPORT,
+    // así que el padding-right que le pusimos a body no las corre: quedan
+    // encima del panel, tapando la conversación justo cuando el cartel habla de
+    // lo que acaba de pasar en el formulario.
+    //
+    // Se corren por transform en vez de pisarles el `right`: así respetamos el
+    // margen que Odoo ya calcula, y si ese margen cambia no hay que tocar esto.
+    // La clase sólo está en <html> cuando el panel está expandido Y visible, de
+    // modo que al minimizar los carteles vuelven solos a su lugar.
+    html.o-tuqui-expanded .o_notification_manager {
+        transform: translateX(calc(-1 * var(--o-tuqui-expanded-width)));
+        transition: transform 0.15s ease;
+    }
+
+    // Expanded, the dialog centers in Odoo's area instead of under the panel.
+    html.o-tuqui-expanded .o_dialog > .modal {
+        width: calc(100vw - var(--o-tuqui-expanded-width));
+    }
+}
+
+// While a dialog is open the panel rises above it: dialogs live in overlay
+// items at $zindex-modal and their `.modal` covers the whole viewport, so at
+// $zindex-sticky the panel is visible but cannot be clicked. The other
+// overlay items (popovers, dropdowns) go one step higher so the panel still
+// never covers them.
+@mixin o-tuqui-panel-over-dialogs {
+    .o-tuqui-panel {
+        z-index: $zindex-modal + 1;
+    }
+    .o-overlay-item:not(:has(.o_dialog)) {
+        z-index: $zindex-modal + 2;
+    }
+}
+@media (min-width: 576px) {
+    html:has(.o-overlay-item .o_dialog) {
+        @include o-tuqui-panel-over-dialogs;
+    }
+}
+// On a phone the panel fills the screen, so over every dialog it would hide the
+// one the chat itself opened (the composer of a proposed note): that one stays
+// on top. Any other dialog goes under the panel, which can still be touched.
+@media (max-width: 575.98px) {
+    html:not(:has(.o_dialog.o-tuqui-chat-dialog)):has(.o-overlay-item .o_dialog) {
+        @include o-tuqui-panel-over-dialogs;
+    }
+}
+
+// Mobile: la card ocupa el viewport completo (un card de 392px no entra bien).
+// Full bleed, so the floating margin and the radius of the desktop card go.
+@media (max-width: 575.98px) {
+    .o-tuqui-panel {
+        right: 0;
+        // The base rule gives `top` a value so the morph interpolates. Here that
+        // value is poison: with `top`, `height` AND `bottom` all set on a fixed
+        // box, CSS drops `bottom` — the card started at `100vh - 18 - 70vh` and
+        // was a full `100dvh` tall, so the composer fell off the bottom of the
+        // screen. Full bleed means it starts at the top.
+        top: 0;
+        bottom: 0;
+        width: 100vw;
+        max-width: 100vw;
+        height: 100dvh;
+        border-radius: 0;
+        border: 0;
+    }
+}
+
+// The header carries the brand instead of being a block of it: same background
+// as the conversation, no rule underneath, the name in salvia. Measured against
+// Odoo's own chat windows, the filled bar was never taller — 44.4px against
+// 44.1px — it just weighed as much as two of them, because Odoo puts a near
+// white there (#f9fafb) and we put a full colour.
+.o-tuqui-panel-header {
+    background: var(--o-view-background-color, #fff);
+    color: var(--tuqui-salvia-700);
+    padding: 0.7rem 0.6rem 0.7rem 0.85rem;
+
+    // The left side of the header, full height and a little past the name, is
+    // where the menu shows itself: coming near the logo is enough.
+    .o-tuqui-brand {
+        gap: 0.2rem;
+        align-self: stretch;
+        margin: -0.7rem 0 -0.7rem -0.85rem;
+        padding: 0.7rem 3rem 0.7rem 0.85rem;
+        &:hover .o-tuqui-menu-toggle {
+            .o-tuqui-logo {
+                opacity: 0;
+                transform: scale(0.85);
+            }
+            .o-tuqui-menu-icon {
+                opacity: 1;
+                transform: none;
+            }
+        }
+    }
+    // The 2px negative margin keeps the logo where it was, inside a 24px target.
+    .o-tuqui-menu-toggle {
+        display: grid;
+        place-items: center;
+        width: 24px;
+        height: 24px;
+        margin: -2px;
+        padding: 0;
+        border: 0;
+        border-radius: 0.4rem;
+        // The same quiet grey as minimize/expand/close: the menu is a control
+        // like them, not a second brand mark.
+        color: #97a29a;
+        transition: background-color 0.15s;
+        > * {
+            grid-area: 1 / 1;
+            transition: opacity 0.18s ease, transform 0.18s $o-tuqui-ease;
+        }
+        .o-tuqui-menu-icon {
+            width: 18px;
+            height: 18px;
+            opacity: 0;
+            transform: scale(0.85);
+        }
+        &:hover,
+        &:focus-visible {
+            background-color: rgba(23, 33, 27, 0.04);
+            .o-tuqui-logo {
+                opacity: 0;
+                transform: scale(0.85);
+            }
+            .o-tuqui-menu-icon {
+                opacity: 1;
+                transform: none;
+            }
+        }
+    }
+    .o-tuqui-menu-hint {
+        .o-tuqui-logo {
+            animation: o-tuqui-hint-out 2.6s 0.6s $o-tuqui-ease both;
+        }
+        .o-tuqui-menu-icon {
+            animation: o-tuqui-hint-in 2.6s 0.6s $o-tuqui-ease both;
+        }
+    }
+    .o-tuqui-logo {
+        height: 20px;
+        width: 20px;
+        border-radius: 5px;
+    }
+    .o-tuqui-title {
+        padding: 0 0.2rem;
+        border: 0;
+        background: transparent;
+        color: var(--tuqui-salvia-700);
+        opacity: 0.85;
+        font-weight: 500;
+        font-size: 0.9rem;
+        letter-spacing: -0.15px;
+        transition: opacity 0.15s;
+        &:hover,
+        &:focus {
+            opacity: 1;
+            color: var(--tuqui-salvia-800);
+        }
+    }
+    .o-tuqui-header-actions {
+        gap: 0.15rem;
+    }
+    .o-tuqui-expand,
+    .o-tuqui-minimize,
+    .o-tuqui-close {
+        padding: 0.25rem 0.35rem;
+        line-height: 1;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 0.4rem;
+        // Odoo 20 Enterprise paints a gradient on every .btn; on this white
+        // header it shows up as a grey pill in dark mode.
+        background-image: none;
+        color: #97a29a;
+        // Material Symbols ships one weight; the stroke brings the icons
+        // close to the Font Awesome weight they had before 20.
+        .oi {
+            -webkit-text-stroke: 0.8px currentColor;
+        }
+        transition: background-color 0.15s, color 0.15s;
+        &:hover,
+        &:focus {
+            background-color: rgba(23, 33, 27, 0.06);
+            color: var(--tuqui-salvia-600);
+        }
+    }
+}
+
+// L1: iframe del SPA
+.o-tuqui-iframe {
+    flex: 1 1 auto;
+    width: 100%;
+    border: 0;
+    background: #fff;
+}
+
+.o-tuqui-body {
+    padding: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    background: var(--tuqui-paper);
+}
+
+// --- Mensajes ---
+.o-tuqui-msg {
+    display: flex;
+    flex-direction: column;
+}
+.o-tuqui-msg-user {
+    align-items: flex-end;
+}
+.o-tuqui-msg-assistant,
+.o-tuqui-msg-system {
+    align-items: flex-start;
+}
+
+.o-tuqui-bubble {
+    max-width: 85%;
+    padding: 0.5rem 0.7rem;
+    border-radius: 0.9rem;
+    font-size: 0.9rem;
+    line-height: 1.35;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+.o-tuqui-msg-user .o-tuqui-bubble {
+    background: var(--tuqui-salvia-600);
+    color: #fff;
+    border-bottom-right-radius: 0.25rem;
+}
+.o-tuqui-msg-assistant .o-tuqui-bubble {
+    background: #fff;
+    color: var(--tuqui-ink);
+    border: 1px solid var(--tuqui-salvia-300);
+    border-bottom-left-radius: 0.25rem;
+}
+.o-tuqui-msg-system .o-tuqui-bubble {
+    background: transparent;
+    color: var(--tuqui-salvia-700);
+    font-size: 0.78rem;
+    font-style: italic;
+    padding: 0.1rem 0.3rem;
+}
+
+// --- Tarjeta de propuesta ---
+.o-tuqui-proposal {
+    max-width: 92%;
+    background: #fff;
+    border: 1px solid var(--tuqui-salvia-300);
+    border-radius: 0.6rem;
+    padding: 0.5rem 0.6rem;
+    margin-top: 0.25rem;
+    font-size: 0.85rem;
+}
+.o-tuqui-proposal-head {
+    font-weight: 600;
+    color: var(--tuqui-salvia-700);
+    margin-bottom: 0.4rem;
+}
+.o-tuqui-field {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.15rem 0;
+    margin: 0;
+    cursor: pointer;
+}
+.o-tuqui-field-name {
+    font-family: var(--font-mono, monospace);
+    font-weight: 600;
+    color: var(--tuqui-ink);
+}
+.o-tuqui-field-arrow {
+    color: var(--tuqui-salvia-300);
+}
+.o-tuqui-field-val {
+    font-family: var(--font-mono, monospace);
+    color: var(--tuqui-salvia-800);
+    word-break: break-all;
+}
+.o-tuqui-proposal-actions {
+    margin-top: 0.5rem;
+    display: flex;
+    gap: 0.25rem;
+    align-items: center;
+}
+.o-tuqui-btn-primary {
+    background: var(--tuqui-salvia-600);
+    color: #fff;
+    border: none;
+    &:hover,
+    &:focus {
+        background: var(--tuqui-salvia-700);
+        color: #fff;
+    }
+}
+.o-tuqui-proposal-done {
+    margin-top: 0.4rem;
+    color: var(--tuqui-salvia-600);
+    font-weight: 600;
+}
+
+// --- Composer ---
+.o-tuqui-composer {
+    display: flex;
+    gap: 0.4rem;
+    align-items: flex-end;
+    padding: 0.6rem;
+    border-top: 1px solid var(--tuqui-salvia-300);
+    background: #fff;
+}
+.o-tuqui-input {
+    resize: none;
+    max-height: 120px;
+    font-size: 0.9rem;
+    border-color: var(--tuqui-salvia-300);
+    &:focus {
+        border-color: var(--tuqui-salvia-600);
+        box-shadow: 0 0 0 0.15rem rgba(63, 94, 78, 0.15);
+    }
+}
+.o-tuqui-send {
+    background: var(--tuqui-salvia-600);
+    color: #fff;
+    border-radius: 0.5rem;
+    padding: 0.4rem 0.65rem;
+    flex: 0 0 auto;
+    &:hover,
+    &:focus {
+        background: var(--tuqui-salvia-700);
+        color: #fff;
+    }
+}
+
+// The card still appears and disappears for someone who asked their system for
+// less motion — it just stops travelling to do it.
+@media (prefers-reduced-motion: reduce) {
+    .o-tuqui-panel,
+    .o-tuqui-panel.o-tuqui-away,
+    .o-tuqui-launcher {
+        transition-duration: 0.01ms;
+        animation: none;
+        transform: none;
+    }
+}
+
+// --- Panel that never finished opening ---
+// Overlays the iframe instead of replacing it: the handshake may simply be late,
+// and unmounting the iframe would burn the nonce (single-use) and the session
+// with it. Covers only the embed area, leaving the header and its close button
+// reachable, because a notice that also hijacks the panel is worse than the
+// error it explains.
+.o-tuqui-blocked,
+.o-tuqui-loading {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background: var(--tuqui-paper, #f7f6f3);
+}
+
+// Tuqui's own ink on its paper: Odoo's text-muted is too faint on this background.
+.o-tuqui-msg-title {
+    color: var(--tuqui-salvia-800);
+    font-weight: 600;
+}
+
+.o-tuqui-msg-body {
+    color: var(--tuqui-salvia-700);
+    font-size: 0.875rem;
+
+    a {
+        color: var(--tuqui-salvia-600);
+        text-decoration: underline;
+    }
+}
+
+.o-tuqui-loading-dots {
+    display: inline-flex;
+    gap: 6px;
+
+    i {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--tuqui-salvia-600);
+        animation: o-tuqui-dot 1.2s ease-in-out infinite;
+    }
+
+    i:nth-child(2) {
+        animation-delay: 0.15s;
+    }
+
+    i:nth-child(3) {
+        animation-delay: 0.3s;
+    }
+}
+
+// The menu hint: the logo turns into the menu icon, holds, and turns back.
+@keyframes o-tuqui-hint-out {
+    0%, 12%, 88%, 100% { opacity: 1; transform: none; }
+    24%, 76% { opacity: 0; transform: scale(0.85); }
+}
+@keyframes o-tuqui-hint-in {
+    0%, 12%, 88%, 100% { opacity: 0; transform: scale(0.85); }
+    24%, 76% { opacity: 1; transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .o-tuqui-menu-hint .o-tuqui-logo,
+    .o-tuqui-menu-hint .o-tuqui-menu-icon {
+        animation: none;
+    }
+}
+
+@keyframes o-tuqui-dot {
+    0%, 80%, 100% {
+        opacity: 0.25;
+        transform: translateY(0);
+    }
+    40% {
+        opacity: 1;
+        transform: translateY(-3px);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .o-tuqui-loading-dots i {
+        animation: none;
+        opacity: 0.6;
+    }
+}

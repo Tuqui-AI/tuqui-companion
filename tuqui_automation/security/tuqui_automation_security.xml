@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="res_groups_privilege_tuqui" model="res.groups.privilege">
+        <field name="name">Tuqui</field>
+        <field name="description">Who can create and edit the automation rules that fire a Tuqui agent. Using Tuqui itself needs no Odoo permission.</field>
+        <!-- The baseline says what everybody can do, like Odoo's own "View". -->
+        <field name="placeholder">Use Tuqui</field>
+        <field name="category_id" ref="base.module_category_productivity"/>
+    </record>
+
+    <!-- Nobody gets it by default: an Odoo administrator assigns it. -->
+    <record id="group_tuqui_triggers" model="res.groups">
+        <field name="name">Manage agent triggers</field>
+        <field name="privilege_id" ref="res_groups_privilege_tuqui"/>
+        <field name="implied_ids" eval="[Command.link(ref('base.group_user'))]"/>
+        <field name="comment">Create, edit and delete automation rules that trigger a Tuqui agent, and only those. Grants no right on server actions.</field>
+    </record>
+
+    <record id="base.group_system" model="res.groups">
+        <field name="implied_ids" eval="[Command.link(ref('group_tuqui_triggers'))]"/>
+    </record>
+
+    <!-- What the group may do on base.automation lives in ir.access.csv, in a
+         row limited to Tuqui triggers. In 20.0 the permissions of a user's
+         groups add up: a user who also has another group with full access to
+         automations (an admin, another module) sees every rule. Administrators
+         need no row of their own: base_automation gives group_system full access.
+         The row keeps the xmlid of the 19.0 ACL, not of the 19.0 ir.rule: Odoo's
+         own modules keep their ACL xmlids in ir.access.csv, so the upgrade has
+         to carry ACL xmlids over to ir.access, while nothing says it does the
+         same for ir.rule ones. -->
+</odoo>

@@ -1,0 +1,112 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* tuqui_embed
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 20.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-29 16:34+0000\n"
+"PO-Revision-Date: 2026-10-29 16:34+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: tuqui_embed
+#: model:ir.model.fields,field_description:tuqui_embed.field_tuqui_embed_pass__consumed_at
+msgid "Consumed At"
+msgstr ""
+
+#. module: tuqui_embed
+#: model:ir.model.fields,field_description:tuqui_embed.field_tuqui_embed_pass__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: tuqui_embed
+#: model:ir.model.fields,field_description:tuqui_embed.field_tuqui_embed_pass__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: tuqui_embed
+#: model:ir.model.fields,field_description:tuqui_embed.field_ir_http__display_name
+#: model:ir.model.fields,field_description:tuqui_embed.field_ir_websocket__display_name
+#: model:ir.model.fields,field_description:tuqui_embed.field_res_users__display_name
+#: model:ir.model.fields,field_description:tuqui_embed.field_tuqui_embed_pass__display_name
+#: model:ir.model.fields,field_description:tuqui_embed.field_tuqui_health__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: tuqui_embed
+#: model:ir.model.fields,field_description:tuqui_embed.field_tuqui_embed_pass__expires_at
+msgid "Expires At"
+msgstr ""
+
+#. module: tuqui_embed
+#: model:ir.model,name:tuqui_embed.model_ir_http
+msgid "HTTP Routing"
+msgstr ""
+
+#. module: tuqui_embed
+#: model:ir.model.fields,field_description:tuqui_embed.field_ir_http__id
+#: model:ir.model.fields,field_description:tuqui_embed.field_ir_websocket__id
+#: model:ir.model.fields,field_description:tuqui_embed.field_res_users__id
+#: model:ir.model.fields,field_description:tuqui_embed.field_tuqui_embed_pass__id
+#: model:ir.model.fields,field_description:tuqui_embed.field_tuqui_health__id
+msgid "ID"
+msgstr ""
+
+#. module: tuqui_embed
+#: model:ir.model.fields,field_description:tuqui_embed.field_tuqui_embed_pass__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: tuqui_embed
+#: model:ir.model.fields,field_description:tuqui_embed.field_tuqui_embed_pass__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: tuqui_embed
+#: model:ir.module.module,summary:base.module_tuqui_embed
+msgid ""
+"Lets Tuqui show this Odoo in its side panel, with a panel-only session."
+msgstr ""
+
+#. module: tuqui_embed
+#. odoo-python
+#: code:addons/tuqui_embed/models/tuqui_embed_pass.py:0
+msgid "This Tuqui is not a declared origin in tuqui.embed_origins."
+msgstr ""
+
+#. module: tuqui_embed
+#: model:ir.model.fields,field_description:tuqui_embed.field_tuqui_embed_pass__token_hash
+msgid "Token Hash"
+msgstr ""
+
+#. module: tuqui_embed
+#: model:ir.model,name:tuqui_embed.model_tuqui_health
+msgid "Tuqui Health Report"
+msgstr ""
+
+#. module: tuqui_embed
+#: model:ir.model,name:tuqui_embed.model_tuqui_embed_pass
+msgid "Tuqui panel pass"
+msgstr ""
+
+#. module: tuqui_embed
+#: model:ir.module.module,shortdesc:base.module_tuqui_embed
+msgid "Tuqui: Odoo in the chat panel"
+msgstr ""
+
+#. module: tuqui_embed
+#: model:ir.model,name:tuqui_embed.model_res_users
+#: model:ir.model.fields,field_description:tuqui_embed.field_tuqui_embed_pass__user_id
+msgid "User"
+msgstr ""
+
+#. module: tuqui_embed
+#: model:ir.model,name:tuqui_embed.model_ir_websocket
+msgid "websocket message handling"
+msgstr ""

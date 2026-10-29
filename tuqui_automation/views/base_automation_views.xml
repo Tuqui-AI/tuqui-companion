@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_base_automation_form_tuqui" model="ir.ui.view">
+        <field name="name">base.automation.form.tuqui</field>
+        <field name="model">base.automation</field>
+        <field name="inherit_id" ref="base_automation.view_base_automation_form" />
+        <field name="arch" type="xml">
+            <!-- In the Tuqui form the agent is the rule's action. In the native
+                 one it only shows on a rule that already has it, so that an
+                 admin cannot put an agent on a rule with other actions. -->
+            <xpath expr="//notebook" position="before">
+                <group invisible="not tuqui_agent_id and not context.get('tuqui_trigger_form')">
+                    <group>
+                        <field name="tuqui_default_name" invisible="1" />
+                        <label for="tuqui_agent_id" />
+                        <div class="o_row">
+                            <field
+                                name="tuqui_agent_id"
+                                class="oe_inline"
+                                required="context.get('tuqui_trigger_form')"
+                            />
+                            <button
+                                type="object"
+                                name="action_open_tuqui_agent"
+                                class="btn-link text-nowrap"
+                                icon="open_in_new"
+                                string="Open in Tuqui"
+                                invisible="not tuqui_agent_id"
+                            />
+                        </div>
+                    </group>
+                </group>
+                <div class="alert alert-info" role="status" invisible="not tuqui_agent_id">
+                    The agent runs with its own service identity, after the change is saved.
+                </div>
+            </xpath>
+            <xpath expr="//field[@name='trigger_field_ids']" position="attributes">
+                <attribute name="required">tuqui_agent_id and trigger == 'on_create_or_write'</attribute>
+            </xpath>
+            <!-- The rule keeps its single "Notify Tuqui" action on its own; and
+                 only an admin may edit server actions at all. -->
+            <xpath expr="//page[@name='actions']" position="attributes">
+                <attribute name="invisible">tuqui_agent_id or context.get('tuqui_trigger_form')</attribute>
+                <attribute name="groups">base.group_system</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_base_automation_list_tuqui" model="ir.ui.view">
+        <field name="name">base.automation.list.tuqui</field>
+        <field name="model">base.automation</field>
+        <field name="priority">100</field>
+        <field name="arch" type="xml">
+            <list string="Tuqui Triggers" js_class="tuqui_trigger_list">
+                <field name="name" />
+                <field name="model_id" />
+                <field name="trigger" />
+                <field name="tuqui_agent_id" />
+                <field name="active" widget="boolean_toggle" />
+            </list>
+        </field>
+    </record>
+
+    <record id="action_tuqui_triggers" model="ir.actions.act_window">
+        <field name="name">Tuqui Triggers</field>
+        <field name="res_model">base.automation</field>
+        <field name="path">tuqui-triggers</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('tuqui_agent_id', '!=', False)]</field>
+        <field name="context">{'tuqui_trigger_form': 1, 'search_default_inactive': 1}</field>
+        <field name="group_ids" eval="[Command.link(ref('group_tuqui_triggers'))]" />
+        <field
+            name="view_ids"
+            eval="[
+                Command.clear(),
+                Command.create({'view_mode': 'list', 'view_id': ref('view_base_automation_list_tuqui')}),
+                Command.create({'view_mode': 'form', 'view_id': ref('base_automation.view_base_automation_form')}),
+            ]"
+        />
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Trigger a Tuqui agent when something happens in Odoo</p>
+            <p>For example, when a lead changes stage or when a date is reached.</p>
+        </field>
+    </record>
+
+    <record id="view_base_automation_search_tuqui" model="ir.ui.view">
+        <field name="name">base.automation.search.tuqui</field>
+        <field name="model">base.automation</field>
+        <field name="inherit_id" ref="base_automation.view_base_automation_search" />
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='inactive']" position="before">
+                <filter string="Tuqui" name="tuqui" domain="[('action_server_ids.state', '=', 'tuqui_notify')]" />
+                <separator />
+            </xpath>
+        </field>
+    </record>
+
+    <!-- No menu of its own: reached from Settings > Tuqui, from Tuqui itself
+         and by URL (/odoo/tuqui-triggers). -->
+    <record id="res_config_settings_view_form_tuqui_triggers" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.tuqui_automation</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="tuqui.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_tuqui_open_events']" position="after">
+                <button
+                    name="%(tuqui_automation.action_tuqui_triggers)d"
+                    type="action"
+                    string="Agent triggers"
+                    icon="flash_on"
+                    class="btn-link p-0"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>

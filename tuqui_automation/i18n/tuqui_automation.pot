@@ -1,0 +1,294 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* tuqui_automation
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 20.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-29 16:34+0000\n"
+"PO-Revision-Date: 2026-10-29 16:34+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: tuqui_automation
+#. odoo-python
+#: code:addons/tuqui_automation/models/base_automation.py:0
+msgid "A Tuqui trigger cannot be fired from a URL."
+msgstr ""
+
+#. module: tuqui_automation
+#. odoo-python
+#: code:addons/tuqui_automation/models/base_automation.py:0
+msgid ""
+"A Tuqui trigger cannot be fired from a URL. To call the agent from outside, "
+"use its webhook in Tuqui."
+msgstr ""
+
+#. module: tuqui_automation
+#. odoo-python
+#: code:addons/tuqui_automation/models/base_automation.py:0
+msgid "A Tuqui trigger has exactly one action, and it notifies its agent."
+msgstr ""
+
+#. module: tuqui_automation
+#. odoo-python
+#: code:addons/tuqui_automation/models/base_automation.py:0
+msgid ""
+"A Tuqui trigger's domain can only compare fields with values, dates and the "
+"current user."
+msgstr ""
+
+#. module: tuqui_automation
+#. odoo-javascript
+#: code:addons/tuqui_automation/static/src/trigger_add_dialog/trigger_add_dialog.js:0
+msgid "After Creation"
+msgstr ""
+
+#. module: tuqui_automation
+#: model_terms:ir.ui.view,arch_db:tuqui_automation.res_config_settings_view_form_tuqui_triggers
+msgid "Agent triggers"
+msgstr ""
+
+#. module: tuqui_automation
+#. odoo-python
+#: code:addons/tuqui_automation/controllers/main.py:0
+msgid ""
+"Ask an Odoo administrator for the «Manage agent triggers» permission "
+"(Settings › Users › Tuqui). Only rules that notify a Tuqui agent are covered"
+" by it."
+msgstr ""
+
+#. module: tuqui_automation
+#: model:ir.model,name:tuqui_automation.model_base_automation
+msgid "Automation Rule"
+msgstr ""
+
+#. module: tuqui_automation
+#: model:ir.module.module,summary:base.module_tuqui_automation
+msgid ""
+"Automation rules that trigger a Tuqui agent, manageable without being an "
+"Odoo administrator."
+msgstr ""
+
+#. module: tuqui_automation
+#. odoo-python
+#: code:addons/tuqui_automation/controllers/main.py:0
+msgid "Back to Odoo"
+msgstr ""
+
+#. module: tuqui_automation
+#. odoo-javascript
+#: code:addons/tuqui_automation/static/src/trigger_add_dialog/trigger_add_dialog.js:0
+msgid "Based on a Date Field"
+msgstr ""
+
+#. module: tuqui_automation
+#. odoo-python
+#: code:addons/tuqui_automation/models/base_automation.py:0
+msgid "Choose at least one field to watch."
+msgstr ""
+
+#. module: tuqui_automation
+#. odoo-javascript
+#: code:addons/tuqui_automation/static/src/trigger_add_dialog/trigger_add_dialog.xml:0
+msgid "Close"
+msgstr ""
+
+#. module: tuqui_automation
+#: model:res.groups,comment:tuqui_automation.group_tuqui_triggers
+msgid ""
+"Create, edit and delete automation rules that trigger a Tuqui agent, and "
+"only those. Grants no right on server actions."
+msgstr ""
+
+#. module: tuqui_automation
+#. odoo-python
+#: code:addons/tuqui_automation/models/base_automation.py:0
+msgid "Deleting this rule needs Odoo administrator rights."
+msgstr ""
+
+#. module: tuqui_automation
+#: model:ir.model.fields,field_description:tuqui_automation.field_base_automation__display_name
+#: model:ir.model.fields,field_description:tuqui_automation.field_ir_actions_server__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: tuqui_automation
+#. odoo-python
+#: code:addons/tuqui_automation/models/base_automation.py:0
+msgid "Field %(field)s does not exist on %(model)s."
+msgstr ""
+
+#. module: tuqui_automation
+#: model_terms:ir.actions.act_window,help:tuqui_automation.action_tuqui_triggers
+msgid "For example, when a lead changes stage or when a date is reached."
+msgstr ""
+
+#. module: tuqui_automation
+#: model:ir.model.fields,field_description:tuqui_automation.field_base_automation__id
+#: model:ir.model.fields,field_description:tuqui_automation.field_ir_actions_server__id
+msgid "ID"
+msgstr ""
+
+#. module: tuqui_automation
+#: model:res.groups,name:tuqui_automation.group_tuqui_triggers
+msgid "Manage agent triggers"
+msgstr ""
+
+#. module: tuqui_automation
+#. odoo-javascript
+#: code:addons/tuqui_automation/static/src/trigger_add_dialog/trigger_add_dialog.js:0
+msgid "New Tuqui Trigger"
+msgstr ""
+
+#. module: tuqui_automation
+#: model_terms:ir.ui.view,arch_db:tuqui_automation.view_base_automation_form_tuqui
+msgid "Open in Tuqui"
+msgstr ""
+
+#. module: tuqui_automation
+#. odoo-javascript
+#: code:addons/tuqui_automation/static/src/trigger_add_dialog/trigger_add_dialog.js:0
+msgid "Runs once per record, when a date is reached."
+msgstr ""
+
+#. module: tuqui_automation
+#. odoo-javascript
+#: code:addons/tuqui_automation/static/src/trigger_add_dialog/trigger_add_dialog.js:0
+msgid "Runs when one of the fields you choose changes."
+msgstr ""
+
+#. module: tuqui_automation
+#. odoo-javascript
+#: code:addons/tuqui_automation/static/src/trigger_add_dialog/trigger_add_dialog.js:0
+msgid "Runs whenever a new record is added."
+msgstr ""
+
+#. module: tuqui_automation
+#: model:ir.model,name:tuqui_automation.model_ir_actions_server
+msgid "Server Action"
+msgstr ""
+
+#. module: tuqui_automation
+#: model:ir.model.fields,help:tuqui_automation.field_base_automation__tuqui_agent_id
+msgid ""
+"The Tuqui agent this rule triggers. Its only action notifies that agent."
+msgstr ""
+
+#. module: tuqui_automation
+#: model_terms:ir.ui.view,arch_db:tuqui_automation.view_base_automation_form_tuqui
+msgid ""
+"The agent runs with its own service identity, after the change is saved."
+msgstr ""
+
+#. module: tuqui_automation
+#. odoo-python
+#: code:addons/tuqui_automation/models/base_automation.py:0
+msgid ""
+"The code that fetches a webhook's record needs Odoo administrator rights."
+msgstr ""
+
+#. module: tuqui_automation
+#. odoo-python
+#: code:addons/tuqui_automation/models/base_automation.py:0
+msgid "The domain is not valid: %s"
+msgstr ""
+
+#. module: tuqui_automation
+#. odoo-python
+#: code:addons/tuqui_automation/models/base_automation.py:0
+msgid "This kind of trigger needs Odoo administrator rights: %s"
+msgstr ""
+
+#. module: tuqui_automation
+#. odoo-python
+#: code:addons/tuqui_automation/models/base_automation.py:0
+msgid ""
+"This rule has other actions: remove them before choosing a Tuqui agent."
+msgstr ""
+
+#. module: tuqui_automation
+#: model_terms:ir.actions.act_window,help:tuqui_automation.action_tuqui_triggers
+msgid "Trigger a Tuqui agent when something happens in Odoo"
+msgstr ""
+
+#. module: tuqui_automation
+#: model:res.groups.privilege,name:tuqui_automation.res_groups_privilege_tuqui
+#: model_terms:ir.ui.view,arch_db:tuqui_automation.view_base_automation_search_tuqui
+msgid "Tuqui"
+msgstr ""
+
+#. module: tuqui_automation
+#: model:ir.model.fields,field_description:tuqui_automation.field_base_automation__tuqui_agent_id
+msgid "Tuqui Agent"
+msgstr ""
+
+#. module: tuqui_automation
+#: model:ir.module.module,shortdesc:base.module_tuqui_automation
+msgid "Tuqui Companion - Agent Triggers"
+msgstr ""
+
+#. module: tuqui_automation
+#: model:ir.model.fields,field_description:tuqui_automation.field_base_automation__tuqui_default_name
+msgid "Tuqui Default Name"
+msgstr ""
+
+#. module: tuqui_automation
+#: model:ir.actions.act_window,name:tuqui_automation.action_tuqui_triggers
+#: model_terms:ir.ui.view,arch_db:tuqui_automation.view_base_automation_list_tuqui
+msgid "Tuqui Triggers"
+msgstr ""
+
+#. module: tuqui_automation
+#: model:res.groups.privilege,placeholder:tuqui_automation.res_groups_privilege_tuqui
+msgid "Use Tuqui"
+msgstr ""
+
+#. module: tuqui_automation
+#. odoo-javascript
+#: code:addons/tuqui_automation/static/src/trigger_add_dialog/trigger_add_dialog.js:0
+msgid "When a Field Changes"
+msgstr ""
+
+#. module: tuqui_automation
+#. odoo-javascript
+#: code:addons/tuqui_automation/static/src/trigger_add_dialog/trigger_add_dialog.xml:0
+msgid "When should your agent be triggered?"
+msgstr ""
+
+#. module: tuqui_automation
+#: model:res.groups.privilege,description:tuqui_automation.res_groups_privilege_tuqui
+msgid ""
+"Who can create and edit the automation rules that fire a Tuqui agent. Using "
+"Tuqui itself needs no Odoo permission."
+msgstr ""
+
+#. module: tuqui_automation
+#. odoo-python
+#: code:addons/tuqui_automation/models/base_automation.py:0
+msgid ""
+"Without Odoo administrator rights, a Tuqui trigger cannot lose its agent."
+msgstr ""
+
+#. module: tuqui_automation
+#. odoo-python
+#: code:addons/tuqui_automation/models/base_automation.py:0
+msgid "You cannot read %(model)s.%(field)s."
+msgstr ""
+
+#. module: tuqui_automation
+#. odoo-python
+#: code:addons/tuqui_automation/models/base_automation.py:0
+msgid "You cannot read the model %s."
+msgstr ""
+
+#. module: tuqui_automation
+#. odoo-python
+#: code:addons/tuqui_automation/controllers/main.py:0
+msgid "You don't have access to Tuqui triggers"
+msgstr ""

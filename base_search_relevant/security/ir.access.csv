@@ -1,0 +1,2 @@
+id,name,model_id,group_id/id,operation,domain
+access_search_relevant_config_admin,search.relevant.config.admin,search.relevant.config,base.group_system,crud,
