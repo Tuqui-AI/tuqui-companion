@@ -1,6 +1,6 @@
 {
     "name": "Tuqui Companion",
-    "version": "20.0.1.3.0",
+    "version": "20.0.1.4.0",
     "category": "Productivity",
     "summary": "One-click activation for Tuqui: registers this instance and handles the OAuth connection from Settings. For Odoo.sh and On-Premise.",
     "author": "Tuqui-AI",
