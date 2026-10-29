@@ -1,7 +1,6 @@
 """Tests for the outgoing event queue.
 
-Coverage mirrors the acceptance criteria of the spec
-`trigger-odoo-tuqui-entrega-confiable`:
+Coverage mirrors the acceptance criteria of reliable event delivery:
 
 * enqueueing does no HTTP, records who caused the event, cannot be reached
   over RPC, and wakes the dispatcher instead of waiting for its interval;
@@ -251,7 +250,7 @@ class TestTuquiEvent(TransactionCase):
 
     def test_a_failed_event_can_be_retried_by_hand(self):
         """The recourse when Tuqui was down longer than the ladder — which is the
-        incident that motivated the whole spec."""
+        incident that motivated this design."""
         event = self._event(state="failed", attempt=MAX_ATTEMPTS, last_error="down")
         event.action_retry()
         self.assertEqual(event.state, "pending")
