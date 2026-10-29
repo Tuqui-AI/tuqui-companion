@@ -1,0 +1,99 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* tuqui_embed
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-29 13:23+0000\n"
+"PO-Revision-Date: 2026-10-29 13:23+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: tuqui_embed
+#: model:ir.model.fields,field_description:tuqui_embed.field_tuqui_embed_pass__consumed_at
+msgid "Consumed At"
+msgstr "Usado el"
+
+#. module: tuqui_embed
+#: model:ir.model.fields,field_description:tuqui_embed.field_tuqui_embed_pass__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: tuqui_embed
+#: model:ir.model.fields,field_description:tuqui_embed.field_tuqui_embed_pass__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: tuqui_embed
+#: model:ir.model,name:tuqui_embed.model_res_device_log
+msgid "Device Log"
+msgstr "Registro del dispositivo"
+
+#. module: tuqui_embed
+#: model:ir.model.fields,field_description:tuqui_embed.field_tuqui_embed_pass__display_name
+msgid "Display Name"
+msgstr "Nombre en pantalla"
+
+#. module: tuqui_embed
+#: model:ir.model.fields,field_description:tuqui_embed.field_tuqui_embed_pass__expires_at
+msgid "Expires At"
+msgstr "Vence el"
+
+#. module: tuqui_embed
+#: model:ir.model,name:tuqui_embed.model_ir_http
+msgid "HTTP Routing"
+msgstr "Enrutamiento HTTP"
+
+#. module: tuqui_embed
+#: model:ir.model.fields,field_description:tuqui_embed.field_tuqui_embed_pass__id
+msgid "ID"
+msgstr "ID"
+
+#. module: tuqui_embed
+#: model:ir.model.fields,field_description:tuqui_embed.field_tuqui_embed_pass__write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: tuqui_embed
+#: model:ir.model.fields,field_description:tuqui_embed.field_tuqui_embed_pass__write_date
+msgid "Last Updated on"
+msgstr "Última actualización el"
+
+#. module: tuqui_embed
+#. odoo-python
+#: code:addons/tuqui_embed/models/tuqui_embed_pass.py:0
+msgid "This Tuqui is not a declared origin in tuqui.embed_origins."
+msgstr "Este Tuqui no es un origen declarado en tuqui.embed_origins."
+
+#. module: tuqui_embed
+#: model:ir.model.fields,field_description:tuqui_embed.field_tuqui_embed_pass__token_hash
+msgid "Token Hash"
+msgstr "Hash del token"
+
+#. module: tuqui_embed
+#: model:ir.model,name:tuqui_embed.model_tuqui_health
+msgid "Tuqui Health Report"
+msgstr "Informe de estado de Tuqui"
+
+#. module: tuqui_embed
+#: model:ir.model,name:tuqui_embed.model_tuqui_embed_pass
+msgid "Tuqui panel pass"
+msgstr "Pase del panel de Tuqui"
+
+#. module: tuqui_embed
+#: model:ir.model,name:tuqui_embed.model_res_users
+#: model:ir.model.fields,field_description:tuqui_embed.field_tuqui_embed_pass__user_id
+msgid "User"
+msgstr "Usuario"
+
+#. module: tuqui_embed
+#: model:ir.model,name:tuqui_embed.model_ir_websocket
+msgid "websocket message handling"
+msgstr "gestión de mensajes de WebSocket"

@@ -1,0 +1,58 @@
+// «Mostrame cómo»: the pilot layer. Nothing here takes clicks.
+// Tuqui's sage (salvia-600 #3F5E4E, salvia-300 #B8C9BF).
+$walk-sage: #3f5e4e;
+$walk-sage-light: #b8c9bf;
+
+.o-tuqui-walk-pilot {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 600ms ease;
+    &.o-tuqui-walk-on {
+        opacity: 1;
+    }
+}
+
+// The only sign that the screen is being used: a soft light along the bottom edge.
+.o-tuqui-walk-glow {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 90px;
+    background:
+        linear-gradient(to top, rgba($walk-sage, 0.28), rgba($walk-sage-light, 0.12) 45%, transparent);
+    animation: o-tuqui-walk-breathe 2.4s ease-in-out infinite alternate;
+}
+
+.o-tuqui-walk-thinking .o-tuqui-walk-glow {
+    animation-duration: 1.1s;
+}
+
+@keyframes o-tuqui-walk-breathe {
+    from {
+        opacity: 0.55;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.o-tuqui-walk-cursor {
+    position: absolute;
+    left: 0;
+    top: 0;
+    // The arrow's tip is its hot spot, as in a system cursor.
+    margin: -3px 0 0 -5px;
+    transition: transform 380ms cubic-bezier(0.3, 0.7, 0.2, 1);
+    filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.3));
+    svg {
+        transition: transform 80ms;
+        transform-origin: 5px 3px;
+    }
+    &.o-tuqui-walk-press svg {
+        transform: scale(0.88);
+    }
+}

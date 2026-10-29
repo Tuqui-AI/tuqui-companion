@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- In the user form a category with a single group shows as a selection:
+         empty (just use Tuqui) or "Manage agent triggers". -->
+    <record id="module_category_tuqui" model="ir.module.category">
+        <field name="name">Tuqui</field>
+        <field
+            name="description"
+        >Who can create and edit the automation rules that fire a Tuqui agent. Using Tuqui itself needs no Odoo permission.</field>
+        <field name="parent_id" ref="base.module_category_productivity" />
+    </record>
+
+    <!-- Nobody gets it by default: an Odoo administrator assigns it. -->
+    <record id="group_tuqui_triggers" model="res.groups">
+        <field name="name">Manage agent triggers</field>
+        <field name="category_id" ref="module_category_tuqui" />
+        <field name="implied_ids" eval="[Command.link(ref('base.group_user'))]" />
+        <field
+            name="comment"
+        >Create, edit and delete automation rules that trigger a Tuqui agent, and only those. Grants no right on server actions.</field>
+    </record>
+
+    <record id="base.group_system" model="res.groups">
+        <field name="implied_ids" eval="[Command.link(ref('group_tuqui_triggers'))]" />
+    </record>
+
+    <record id="rule_base_automation_tuqui_triggers" model="ir.rule">
+        <field name="name">Automation rules: Tuqui triggers only</field>
+        <field name="model_id" ref="base_automation.model_base_automation" />
+        <field name="domain_force">[('tuqui_agent_id', '!=', False)]</field>
+        <field name="groups" eval="[Command.link(ref('group_tuqui_triggers'))]" />
+    </record>
+
+    <!-- Admins imply the group above; without this rule they would be
+         limited to Tuqui triggers too (group rules are OR-ed). -->
+    <record id="rule_base_automation_system" model="ir.rule">
+        <field name="name">Automation rules: administrators see all</field>
+        <field name="model_id" ref="base_automation.model_base_automation" />
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[Command.link(ref('base.group_system'))]" />
+    </record>
+</odoo>

@@ -1,0 +1,7 @@
+// See nested.js. Selectors from the real markup (systray.xml, panel.xml).
+.o-tuqui-nested {
+    .o-tuqui-systray-btn,
+    .o-tuqui-panel {
+        display: none !important;
+    }
+}
