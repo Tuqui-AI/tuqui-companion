@@ -1,6 +1,6 @@
 """A copy of a connected database registers as a test database of the same workspace.
 
-Spec ``bases-de-prueba-del-workspace``: the neutralize leaves the connection as
+The neutralize leaves the connection as
 ``copy_pending``, and the first time the panel opens the copy mints its own
 credentials, keeps them, and registers them with Tuqui signed with the key it
 inherited.

@@ -433,8 +433,7 @@ class TuquiOAuthClient(models.Model):
         are committed BEFORE calling Tuqui, so a registration Tuqui received is
         never one this database forgot. A retry sends exactly the same ones: Tuqui
         answers it as already registered, and refuses anything else for a copy it
-        already verified. Spec
-        ``bases-de-prueba-del-workspace``.
+        already verified.
 
         Returns:
             ``{"status": ...}``: ``registered``, ``pending`` (Tuqui has not reached

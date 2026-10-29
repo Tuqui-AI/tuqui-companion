@@ -1,6 +1,6 @@
 """Tests for the "Notify Tuqui" server action type.
 
-Coverage mirrors the spec's §Configuración acceptance criteria:
+Coverage mirrors the configuration acceptance criteria:
 
 * the action asks for an agent and nothing else — no URL, no token;
 * the agent list is fetched from Tuqui, never mirrored, and cached for minutes
