@@ -181,7 +181,7 @@ msgid ""
 "activation; every call Tuqui makes runs with the acting user's own "
 "permissions and is recorded in the access log."
 msgstr ""
-"Conectá esta base a Tuqui, el asistente de IA para Odoo. Se activa con un "
+"Conecte esta base a Tuqui, el asistente de IA para Odoo. Se activa con un "
 "clic; cada llamada de Tuqui corre con los permisos del usuario que actúa y "
 "queda en el registro de accesos."
 
@@ -301,7 +301,7 @@ msgid ""
 "                retried on its own schedule; a failed event stays on the list so it can be\n"
 "                sent again by hand."
 msgstr ""
-"Los eventos aparecen acá cuando una automatización le avisa a un agente de Tuqui. Cada uno\n"
+"Los eventos aparecen aquí cuando una automatización le avisa a un agente de Tuqui. Cada uno\n"
 "                se reintenta según su propio calendario; un evento fallido queda en la lista para\n"
 "                poder enviarlo de nuevo a mano."
 
@@ -748,7 +748,7 @@ msgid ""
 msgstr ""
 "La conexión funciona, pero todavía no hay agentes de Tuqui ofrecidos a las "
 "acciones de Odoo. En Tuqui, un admin del workspace activa el canal \"Acción "
-"de Odoo\" del agente (Agentes > el agente > Canales) y aparece acá en unos "
+"de Odoo\" del agente (Agentes > el agente > Canales) y aparece aquí en unos "
 "minutos."
 
 #. module: tuqui
@@ -791,8 +791,8 @@ msgid ""
 msgstr ""
 "Esta base se conectó a Tuqui antes de que existieran los eventos firmados, "
 "así que todavía no tiene clave de firma. Tuqui la pide solo dentro de la "
-"próxima hora; para hacerlo ahora, desconectá y volvé a activar desde Ajustes"
-" > Tuqui."
+"próxima hora; para hacerlo ahora, desconecte y vuelva a activar desde "
+"Ajustes > Tuqui."
 
 #. module: tuqui
 #: model_terms:ir.ui.view,arch_db:tuqui.res_config_settings_view_form
@@ -806,8 +806,8 @@ msgid ""
 "This database is not connected to Tuqui yet. Connect it from Settings > "
 "Tuqui and the agents will appear here."
 msgstr ""
-"Esta base todavía no está conectada a Tuqui. Conectala desde Ajustes > Tuqui"
-" y los agentes van a aparecer acá."
+"Esta base todavía no está conectada a Tuqui. Conéctela desde Ajustes > Tuqui"
+" y los agentes van a aparecer aquí."
 
 #. module: tuqui
 #: model_terms:ir.ui.view,arch_db:tuqui.view_tuqui_access_log_list
@@ -923,7 +923,7 @@ msgid ""
 "                            Reads still follow each user's own Odoo permissions."
 msgstr ""
 "Tuqui puede crear, modificar y borrar en Odoo, pero solo en los modelos\n"
-"                            que habilites en la lista de escritura de los ajustes de Tuqui.\n"
+"                            que habilite en la lista de escritura de los ajustes de Tuqui.\n"
 "                            Las lecturas siguen los permisos de Odoo de cada usuario."
 
 #. module: tuqui
@@ -954,21 +954,21 @@ msgid ""
 "be saved if you already know the agent id, and an automation that is already"
 " configured keeps working."
 msgstr ""
-"Tuqui no respondió, así que no se pudo cargar la lista. Podés guardar la "
-"acción igual si ya sabés el id del agente, y una automatización que ya está "
+"Tuqui no respondió, así que no se pudo cargar la lista. Puede guardar la "
+"acción igual si ya sabe el id del agente, y una automatización que ya está "
 "configurada sigue funcionando."
 
 #. module: tuqui
 #. odoo-python
 #: code:addons/tuqui/controllers/activation.py:0
 msgid "Tuqui is already activated. Disconnect first to re-activate."
-msgstr "Tuqui ya está activado. Desconectalo antes de volver a activarlo."
+msgstr "Tuqui ya está activado. Desconéctelo antes de volver a activarlo."
 
 #. module: tuqui
 #. odoo-python
 #: code:addons/tuqui/models/res_config_settings.py:0
 msgid "Tuqui is checking this copy. Try again in a minute."
-msgstr "Tuqui está revisando esta copia. Probá de nuevo en un minuto."
+msgstr "Tuqui está revisando esta copia. Inténtelo de nuevo en un minuto."
 
 #. module: tuqui
 #. odoo-python
@@ -1078,7 +1078,7 @@ msgid ""
 msgstr ""
 "Con esta opción, Tuqui solo puede leer datos de este Odoo; en el camino por "
 "miembro se bloquean las operaciones de escritura y ejecución. Es lo seguro "
-"por defecto. Desactivala para que el agente de IA pueda crear, modificar o "
+"por defecto. Desactívela para que el agente de IA pueda crear, modificar o "
 "borrar registros."
 
 #. module: tuqui
